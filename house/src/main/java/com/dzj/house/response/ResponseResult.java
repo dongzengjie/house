@@ -21,6 +21,10 @@ public class ResponseResult<T> {
 		this.msg = resultEnum.getMsg();
 	}
 	
+	public ResponseResult(String msg,int code) {
+		this.code = code;
+		this.msg = msg;
+	}
 	
 	public T getData() {
 		return data;
