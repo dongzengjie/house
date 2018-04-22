@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private RedisService redisService;
 	
-	private static final String  COOKIER_TOKEN="token_cookier";
+	public static final String  COOKIER_TOKEN="token_cookier";
 	
 	private static final int OVER_TIME=1800;
 	
