@@ -4,6 +4,8 @@ package com.dzj.house.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dzj.house.entity.User;
 import com.dzj.house.service.UserService;
 import com.dzj.house.util.ImageUtil;
 
@@ -37,8 +40,18 @@ public class Test {
 		
 	}
 	
-	@GetMapping(value="/{name}")
-	public String test12(@PathVariable("name") String name) {
-		return userserver.getUserByName(name).getName();
+	@GetMapping(value="/redis")
+	public String test12(HttpServletResponse response) {
+		User user =new User();
+		user.setUserId(1l);
+		user.setName("test");
+		String token =userserver.addUserToRedis(response, user);
+		User user1 =userserver.getUserByTokenFromRedis(response, token);
+		System.out.println(user1.getName());
+		
+		return 	userserver.addUserToRedis(response, user);
+		
 	}
+	
+	
 }

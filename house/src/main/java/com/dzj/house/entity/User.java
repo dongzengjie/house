@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class User implements UserDetails {
 
 	/**
@@ -93,7 +95,7 @@ public class User implements UserDetails {
 	}
 	
 	
-	
+
 	private List<GrantedAuthority> authorityList;
 	
 	public List<GrantedAuthority> getAuthorityList() {

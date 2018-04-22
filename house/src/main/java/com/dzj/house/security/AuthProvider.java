@@ -29,7 +29,8 @@ public class AuthProvider implements AuthenticationProvider {
 		
 		User user = userService.getUserByName(userName);
 		if(password.equals(user.getPassword())) {
-			user.getAuthorities();
+		
+			
 			return new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());
 		}
 		throw new LoginException(LoginEnum.PASSWORD_ERROR);
