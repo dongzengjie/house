@@ -35,4 +35,14 @@ public class ToPage {
 		
 	}
 	
+	/**
+	 * 新增房屋图片页面
+	 * @return
+	 */
+	@RequestMapping(value="/toaddHousePicture",method=RequestMethod.GET)
+	public String toAdminHousePicture() {
+		return "admin/house-picture";
+		
+	}
+	
 }

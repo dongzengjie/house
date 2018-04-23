@@ -4,15 +4,15 @@ import com.dzj.house.enums.ResultEnum;
 
 public class ResponseResult<T> {
 
-	private T data;
+	private T result;
 	private int code;
 	private String msg;
 	
 
-	public ResponseResult(T data, ResultEnum resultEnum) {
+	public ResponseResult(T result, ResultEnum resultEnum) {
 		this.code = resultEnum.getCode();
 		this.msg = resultEnum.getMsg();
-		this.data = data;
+		this.result = result;
 		
 	}
 	
@@ -26,12 +26,15 @@ public class ResponseResult<T> {
 		this.msg = msg;
 	}
 	
-	public T getData() {
-		return data;
+	
+	public T getResult() {
+		return result;
 	}
-	public void setData(T data) {
-		this.data = data;
+
+	public void setResult(T result) {
+		this.result = result;
 	}
+
 	public int getCode() {
 		return code;
 	}

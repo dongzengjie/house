@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +29,10 @@ public class Test {
 	private UserService userserver;
 	
 	@PostMapping(value="/upload", consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-	public void test(@RequestParam("file") MultipartFile file) {
-	
+	public void test(@RequestParam("file") MultipartFile file,HttpServletRequest request) {
+		String username=request.getParameter("username");
+		//String username=(String) request.getAttribute("username");
+		System.out.println(username);
 		System.out.println("成功进入");
 		try {
 			ImageUtil.uploadImage(file.getInputStream(), file.getOriginalFilename(), 1L);
