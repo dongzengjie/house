@@ -104,8 +104,13 @@
 				// 选择文件的按钮。可选。
 				// 内部根据当前运行是创建，可能是input元素，也可能是flash.
 				pick : '#filePicker',
-				
-				
+
+				formData : {
+					//设置传入服务器的参数变量
+					//注意不要在此赋值
+					uid : 123,
+					user : 0
+				},
 
 				// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
 				resize : false,
@@ -116,12 +121,12 @@
 					mimeTypes : 'image/*'
 				}
 			});
-			//自定义参数
-			//uploader.options ={formData:"userName":"吉安娜","gender":"女"}
-			//uploader.options ={formData:"userName":"吉安娜","gender":"女"};
+			uploader.on( ‘uploadBeforeSend’, function( object, data,header ) {
 
-			
-			
+		        // 修改data可以控制发送哪些携带数据。
+		        data.user = "assasa";
+		        }
+
 			uploader
 					.on(
 							'fileQueued',
