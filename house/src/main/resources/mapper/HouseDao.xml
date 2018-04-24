@@ -31,27 +31,27 @@
 		)
 		VALUES
 		(
-		title,
-		price,
-		area,
-		room,
-		floor,
-		totalFloor,
-		watchTimes,
-		buildYear,
-		status,
-		createTime,
-		lastUpdateTime,
-		cityEnName,
-		redionEnName,
-		cover,
-		direction,
-		distanceToSubway,
-		parlour,
-		district,
-		userId,
-		bathroom,
-		street
+		#{title},
+		#{price},
+		#{area},
+		#{room},
+		#{floor},
+		#{totalFloor},
+		#{watchTimes},
+		#{buildYear},
+		#{status},
+		#{createTime},
+		#{lastUpdateTime},
+		#{cityEnName},
+		#{redionEnName},
+		#{cover},
+		#{direction},
+		#{distanceToSubway},
+		#{parlour},
+		#{district},
+		#{userId},
+		#{bathroom},
+		#{street}	
 
 
 		)

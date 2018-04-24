@@ -5,6 +5,7 @@ package com.dzj.house.dto;
 public class HouseDto {
 
 
+	//house
 	private String title;
 	private int price;
 	private int area;
@@ -23,16 +24,24 @@ public class HouseDto {
 	private int bathroom;
 	private String street;
 	
+	//housedetail
 	private String description;
 	private String layoutDesc;
 	private String traffic;
 	private String roundService;
 	private String rentWay;
 	private String address;
-	private long subwayLineId;
-	private String subwayLineName;
+	
 	private long subwayStationId;
 	private String subwayStationName;
+	
+	//subway
+	private long subwayId;
+	private String subwayName;
+	
+	
+	
+	
 	public String getTitle() {
 		return title;
 	}
@@ -171,17 +180,18 @@ public class HouseDto {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public long getSubwayLineId() {
-		return subwayLineId;
+
+	public long getSubwayId() {
+		return subwayId;
 	}
-	public void setSubwayLineId(long subwayLineId) {
-		this.subwayLineId = subwayLineId;
+	public void setSubwayId(long subwayId) {
+		this.subwayId = subwayId;
 	}
-	public String getSubwayLineName() {
-		return subwayLineName;
+	public String getSubwayName() {
+		return subwayName;
 	}
-	public void setSubwayLineName(String subwayLineName) {
-		this.subwayLineName = subwayLineName;
+	public void setSubwayName(String subwayName) {
+		this.subwayName = subwayName;
 	}
 	public long getSubwayStationId() {
 		return subwayStationId;

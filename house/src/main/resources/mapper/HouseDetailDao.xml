@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dzj.house.dao.HouseDetail">
+<mapper namespace="com.dzj.house.dao.HouseDetailDao">
 
 
 	<insert id="insertHouseDetail"
 		parameterType="com.dzj.house.entity.HouseDetail"
 		useGeneratedKeys="true" keyColumn="house_detail_id"
 		keyProperty="houseDetailId">
-		INSERT IOTO house_detail
+		INSERT INTO house_detail
 		(
 			description,
 			layout_desc,
@@ -17,25 +17,25 @@
 			round_service,
 			rent_way,
 			address,
-			subway_line_id,
-			subway_line_name,
+			subway_id,
+			subway_name,
 			subway_station_id,
 			subway_station_name,
 			house_id
 		)
 		VALUES
 		(
-			description,
-			layoutDesc,
-			traffic,
-			roundService,
-			rentWay,
-			address,
-			subwayLineId,
-			subwayLineName,
-			subwayStationId,
-			subwayStationName,
-			houseId
+			#{description},
+			#{layoutDesc},
+			#{traffic},
+			#{roundService},
+			#{rentWay},
+			#{address},
+			#{subwayId},
+			#{subwayName},
+			#{subwayStationId},
+			#{subwayStationName},
+			#{houseId}
 			
 		)
 	</insert>

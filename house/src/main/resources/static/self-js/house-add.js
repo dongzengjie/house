@@ -33,7 +33,7 @@ $(function(){
 		$.getJSON(getsubwayurl+belongto,function(data){
 			var subwayselectHTML='';
 			data.result.map(function(item,index){
-				subwayselectHTML +='<option value="'+item.subwayId+'">'+item.name+'</option>'
+				subwayselectHTML +='<option value="'+item.subwayId+'">'+item.subwayName+'</option>'
 			});
 			
 			$("#subway-select").html(subwayselectHTML);
@@ -48,7 +48,7 @@ $(function(){
 		$.getJSON(getstationurl+subWayId,function(data){
 			var stationselectHTML='';
 			data.result.map(function(item,index){
-				stationselectHTML +='<option value="'+item.subwayStationId+'">'+item.name+'</option>'
+				stationselectHTML +='<option value="'+item.subwayStationId+'">'+item.subwayStationName+'</option>'
 			});
 			
 			$("#station-select").html(stationselectHTML);

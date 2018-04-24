@@ -6,13 +6,14 @@ public class HouseSubscribe {
 	private long houseSubscribeId;
 	private long houseId;
 	private long userId;
-	private String desc;
+	private String description;
 	private int status;
 	private Date createTime;
 	private Date lastUpdateTime;
 	private Date orderTime;
 	private String telephone;
 	private long adminId;
+	
 	public long getHouseSubscribeId() {
 		return houseSubscribeId;
 	}
@@ -31,11 +32,12 @@ public class HouseSubscribe {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	public String getDesc() {
-		return desc;
+	
+	public String getDescription() {
+		return description;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public int getStatus() {
 		return status;

@@ -4,7 +4,7 @@ public class SubwayStation {
 
 	private long subwayStationId;
 	private long subwayId;
-	private String name;
+	private String subwayStationName;
 	public long getSubwayStationId() {
 		return subwayStationId;
 	}
@@ -17,12 +17,14 @@ public class SubwayStation {
 	public void setSubwayId(long subwayId) {
 		this.subwayId = subwayId;
 	}
-	public String getName() {
-		return name;
+	public String getSubwayStationName() {
+		return subwayStationName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setSubwayStationName(String subwayStationName) {
+		this.subwayStationName = subwayStationName;
 	}
+
+
 	
 	
 }

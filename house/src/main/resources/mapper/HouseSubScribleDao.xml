@@ -9,11 +9,11 @@
 		useGeneratedKeys="true" keyColumn="house_subscribe_id"
 		keyProperty="houseSubscribeId">
 		
-		insert into house_subscrible 
+		insert into house_subscribe 
 		(
 			house_id,
 			user_id,
-			desc,
+			description,
 			status,
 			create_time,
 			last_update_time,
@@ -23,15 +23,15 @@
 		)
 		VALUES
 		(
-			houseId,
-			userId,
-			desc,
-			status,
-			createTime,
-			lastUpdateTime,
-			orderTime,
-			telephone,
-			adminId
+			#{houseId},
+			#{userId},
+			#{description},
+			#{status},
+			#{createTime},
+			#{lastUpdateTime},
+			#{orderTime},
+			#{telephone},
+			#{adminId}
 		)
 	</insert>
 

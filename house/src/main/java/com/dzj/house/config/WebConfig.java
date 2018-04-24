@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SuppressWarnings("deprecation")
@@ -21,7 +22,10 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	private UserArgementResolver userArgementResolver;
 	@Bean
 	public ObjectMapper objectMapper() {
-		return new ObjectMapper();
+		ObjectMapper objectMapper =	new ObjectMapper();
+		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		
+		return objectMapper;
 	}
 
 	@Override

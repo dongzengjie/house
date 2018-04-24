@@ -27,6 +27,7 @@ public class RedisService {
 		String resultStr = ops.get(key);
 		try {
 			value = objectMapper.readValue(resultStr, clazz);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

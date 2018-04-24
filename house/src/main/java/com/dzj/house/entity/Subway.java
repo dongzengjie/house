@@ -5,7 +5,7 @@ import java.util.List;
 public class Subway {
 
 	private long subwayId;
-	private String name;
+	private String subwayName;
 	private String cityEnName;
 	private List<SubwayStation> subwayStationList;
 	
@@ -23,11 +23,13 @@ public class Subway {
 	public void setSubwayId(long subwayId) {
 		this.subwayId = subwayId;
 	}
-	public String getName() {
-		return name;
+
+
+	public String getSubwayName() {
+		return subwayName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setSubwayName(String subwayName) {
+		this.subwayName = subwayName;
 	}
 	public String getCityEnName() {
 		return cityEnName;

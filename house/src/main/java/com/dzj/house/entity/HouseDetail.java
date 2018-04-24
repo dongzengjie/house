@@ -8,8 +8,8 @@ public class HouseDetail {
 	private String roundService;
 	private String rentWay;
 	private String address;
-	private long subwayLineId;
-	private String subwayLineName;
+	private long subwayId;
+	private String subwayName;
 	private long subwayStationId;
 	private String subwayStationName;
 	private long houseId;
@@ -70,21 +70,7 @@ public class HouseDetail {
 		this.address = address;
 	}
 
-	public long getSubwayLineId() {
-		return subwayLineId;
-	}
 
-	public void setSubwayLineId(long subwayLineId) {
-		this.subwayLineId = subwayLineId;
-	}
-
-	public String getSubwayLineName() {
-		return subwayLineName;
-	}
-
-	public void setSubwayLineName(String subwayLineName) {
-		this.subwayLineName = subwayLineName;
-	}
 
 	public long getSubwayStationId() {
 		return subwayStationId;

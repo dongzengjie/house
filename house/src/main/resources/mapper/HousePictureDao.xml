@@ -5,8 +5,7 @@
 <mapper namespace="com.dzj.house.dao.HousePictureDao">
 
 
-	<insert id="com.dzj.house.dao.HousePictureDao"
-		parameterType="com.dzj.house.entity.HousePicture"
+	<insert id="insertHousePicture" parameterType="java.util.List"
 		keyColumn="house_picture_id" keyProperty="housePictureId"
 		useGeneratedKeys="true">
 
@@ -21,13 +20,17 @@
 		path
 		)
 		VALUES
-		(
-		houseId,
-		cdnPrefix,
-		width,
-		heigh,
-		location,
-		path
-		)
+		<foreach collection="list" item="housePictureList"
+			separator="," index="index">
+			(
+			#{housePictureList.houseId},
+			#{housePictureList.cdnPrefix},
+			#{housePictureList.width},
+			#{housePictureList.heigh},
+			#{housePictureList.location},
+			#{housePictureList.path}
+			)
+		</foreach>
+
 	</insert>
 </mapper>
