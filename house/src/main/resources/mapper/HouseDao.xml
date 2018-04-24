@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dzj.house.dao.HouseDao">
+	<insert id="insertHouse"
+		parameterType="com.dzj.house.entity.House" useGeneratedKeys="true"
+		keyColumn="house_id" keyProperty="houseId">
+		INSERT INTO house (
+		title,
+		price,
+		area,
+		room,
+		floor,
+		total_floor,
+		watch_times,
+		build_year,
+		status,
+		create_time,
+		last_update_time,
+		city_en_name,
+		region_en_name,
+		cover,
+		direction,
+		distance_to_subway,
+		parlour,
+		district,
+		user_id,
+		bathroom,
+		street
+		)
+		VALUES
+		(
+		title,
+		price,
+		area,
+		room,
+		floor,
+		totalFloor,
+		watchTimes,
+		buildYear,
+		status,
+		createTime,
+		lastUpdateTime,
+		cityEnName,
+		redionEnName,
+		cover,
+		direction,
+		distanceToSubway,
+		parlour,
+		district,
+		userId,
+		bathroom,
+		street
+
+
+		)
+
+	</insert>
+</mapper>

@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +28,7 @@ import com.dzj.house.util.ImageUtil;
 public class Test {
 	@Autowired
 	private UserService userserver;
-	
+
 	@PostMapping(value="/upload", consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 	public void test(@RequestParam("file") MultipartFile file,HttpServletRequest request) {
 		String username=request.getParameter("username");
@@ -45,6 +46,8 @@ public class Test {
 	
 	@GetMapping(value="/redis")
 	public String test12(HttpServletResponse response) {
+		
+		
 		User user =new User();
 		user.setUserId(1l);
 		user.setName("test");

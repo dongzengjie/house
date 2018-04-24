@@ -105,12 +105,7 @@
 				// 内部根据当前运行是创建，可能是input元素，也可能是flash.
 				pick : '#filePicker',
 
-				formData : {
-					//设置传入服务器的参数变量
-					//注意不要在此赋值
-					uid : 123,
-					user : 0
-				},
+			
 
 				// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
 				resize : false,
@@ -121,11 +116,7 @@
 					mimeTypes : 'image/*'
 				}
 			});
-			uploader.on( ‘uploadBeforeSend’, function( object, data,header ) {
-
-		        // 修改data可以控制发送哪些携带数据。
-		        data.user = "assasa";
-		        }
+		
 
 			uploader
 					.on(
@@ -358,7 +349,8 @@
 						label : '点击选择图片'
 					},
 					formData : {
-						uid : 123
+						uid : 123,
+						username :"董曾杰"
 					},
 					dnd : '#dndArea',
 					paste : '#uploader',

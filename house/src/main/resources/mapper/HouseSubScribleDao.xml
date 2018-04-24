@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dzj.house.dao.HouseSubScribleDao">
+
+	<insert id="insertHouseSubScrible"
+		parameterType="com.dzj.house.entity.HouseSubscribe"
+		useGeneratedKeys="true" keyColumn="house_subscribe_id"
+		keyProperty="houseSubscribeId">
+		
+		insert into house_subscrible 
+		(
+			house_id,
+			user_id,
+			desc,
+			status,
+			create_time,
+			last_update_time,
+			order_time,
+			telephone,
+			admin_id
+		)
+		VALUES
+		(
+			houseId,
+			userId,
+			desc,
+			status,
+			createTime,
+			lastUpdateTime,
+			orderTime,
+			telephone,
+			adminId
+		)
+	</insert>
+
+</mapper>

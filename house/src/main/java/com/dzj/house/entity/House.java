@@ -22,7 +22,7 @@ public class House {
 	private String distanceToSubway;
 	private String parlour;
 	private String  district;
-	private long adminId;
+	private long userId;
 	private int bathroom;
 	private String street;
 	
@@ -141,11 +141,12 @@ public class House {
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-	public long getAdminId() {
-		return adminId;
+
+	public long getUserId() {
+		return userId;
 	}
-	public void setAdminId(long adminId) {
-		this.adminId = adminId;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 	public int getBathroom() {
 		return bathroom;

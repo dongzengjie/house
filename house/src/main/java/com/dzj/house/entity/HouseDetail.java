@@ -12,7 +12,6 @@ public class HouseDetail {
 	private String subwayLineName;
 	private long subwayStationId;
 	private String subwayStationName;
-	
 	private long houseId;
 
 	public long getHouseDetailId() {
