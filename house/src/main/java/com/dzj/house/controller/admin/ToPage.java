@@ -45,4 +45,9 @@ public class ToPage {
 		
 	}
 	
+	@RequestMapping(value="/toaouse",method=RequestMethod.GET)
+	public String ttest() {
+		return "admin/house-add";
+		
+	}
 }
