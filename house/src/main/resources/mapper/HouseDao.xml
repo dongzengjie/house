@@ -3,6 +3,11 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dzj.house.dao.HouseDao">
+
+	<select id="queryAllHouseByUserId" resultType="com.dzj.house.entity.House">
+		select * from house where user_id=#{userId}
+	</select>
+
 	<insert id="insertHouse"
 		parameterType="com.dzj.house.entity.House" useGeneratedKeys="true"
 		keyColumn="house_id" keyProperty="houseId">

@@ -6,10 +6,12 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.dzj.house.dto.HouseDto;
 import com.dzj.house.entity.House;
 import com.dzj.house.entity.HouseDetail;
 import com.dzj.house.entity.HousePicture;
@@ -29,6 +31,8 @@ public class HouseInfoTest {
 	
 	@Test
 	public void test() {
+		
+		
 		/*House house =new House();
 		house.setTitle("ddddd");
 		house.setTotalFloor(12);

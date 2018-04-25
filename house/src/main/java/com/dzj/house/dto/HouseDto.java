@@ -19,7 +19,7 @@ public class HouseDto {
 	private String cover;
 	private String direction;
 	private String distanceToSubway;
-	private String parlour;
+	private int parlour;
 	private String  district;
 	private int bathroom;
 	private String street;
@@ -120,10 +120,11 @@ public class HouseDto {
 	public void setDistanceToSubway(String distanceToSubway) {
 		this.distanceToSubway = distanceToSubway;
 	}
-	public String getParlour() {
+
+	public int getParlour() {
 		return parlour;
 	}
-	public void setParlour(String parlour) {
+	public void setParlour(int parlour) {
 		this.parlour = parlour;
 	}
 	public String getDistrict() {

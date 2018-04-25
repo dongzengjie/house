@@ -16,6 +16,7 @@ import com.dzj.house.entity.House;
 import com.dzj.house.entity.HouseDetail;
 import com.dzj.house.entity.HousePicture;
 import com.dzj.house.entity.HouseSubscribe;
+import com.dzj.house.entity.User;
 import com.dzj.house.enums.HouseInfoEnum;
 import com.dzj.house.service.HouseInfoService;
 @Service
@@ -31,7 +32,7 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 	private HouseSubScribleDao houseSubScribleDao;
 	
 	@Transactional
-	public void addHouseInfo(House house,HouseDetail houseDetail) throws HouseInfoException {
+	public void addHouseInfo(House house,HouseDetail houseDetail,User user) throws HouseInfoException {
 		if(house == null) {
 			throw new HouseInfoException(HouseInfoEnum.HOUSE_INFO_ERROR);
 		}
@@ -39,6 +40,7 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 			throw new HouseInfoException(HouseInfoEnum.HOUSEDETAIL_INFO_ERROR);
 		}
 		
+		house.setUserId(user.getUserId());
 		house.setCreateTime(new Date());
 		house.setLastUpdateTime(new Date());
 		int effect =houseDao.insertHouse(house);

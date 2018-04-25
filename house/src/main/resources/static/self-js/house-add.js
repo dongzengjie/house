@@ -3,6 +3,7 @@ $(function(){
 	var getregionurl='/admin/getregion/';
 	var getsubwayurl = '/admin/getsubway/';
 	var getstationurl = '/admin/getstation/';
+	var addhouseinfourl = '/admin/addHouseInfo'
 	
 	$.getJSON(getcityurl,function(data){
 		var cityselectHTML='<option value="0">请选择市</option>';
@@ -53,6 +54,56 @@ $(function(){
 			
 			$("#station-select").html(stationselectHTML);
 			
+		});
+		
+	});
+	
+	
+	
+	
+	$("#submit").click(function(){
+		
+		var houseDto={};
+		houseDto.title=$("#title").val();
+		houseDto.cityEnName=$("#city-select").val();
+		houseDto.redionEnName=$("#region-select").val();
+		houseDto.street=$("#street").val();
+		houseDto.district=$("#district").val();
+		houseDto.address=$("#address").val();
+		houseDto.room=$("#room").val();
+		houseDto.parlour=$("#parlour").val();
+		houseDto.direction=$("#direction").val();
+		houseDto.buildYear=$("#buildYear").val();
+		houseDto.floor=$("#floor").val();
+		houseDto.totalFloor=$("#totalFloor").val();
+		houseDto.area=$("#area").val();
+		houseDto.price=$("#price").val();
+		houseDto.rentWay=$("#rentWay").val();
+		houseDto.subwayId=$("#subway-select").val();
+		houseDto.subwayName=$("#subway-select").find("option:selected").text();
+		houseDto.distanceToSubway=$("#distanceToSubway").val();
+		houseDto.subwayStationId=$("#station-select").val();
+		houseDto.subwayStationName=$("#station-select").find("option:selected").text();
+		houseDto.layoutDesc=$("#layoutDesc").val();
+		houseDto.traffic=$("#traffic").val();
+		houseDto.roundService=$("#roundService").val();
+		houseDto.description=$("#description").val();
+		
+		
+		var formData = new FormData();
+		formData.append('houseinfo',JSON.stringify(houseDto));
+		$.ajax({
+			
+			url:addhouseinfourl,
+			type:'POST',
+			data:JSON.stringify(houseDto),
+			contentType : 'application/json',
+			cache : false,
+			success:function(data){
+				if(data.code==1){
+					alert("操作成功");
+				}
+			}
 		});
 		
 	});

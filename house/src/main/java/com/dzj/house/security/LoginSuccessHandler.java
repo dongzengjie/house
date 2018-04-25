@@ -32,7 +32,16 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		User user = (User) authentication.getPrincipal();
+		User userdetail = (User) authentication.getPrincipal();
+		
+		User user = new User();
+		user.setName(userdetail.getName());
+		user.setPassword(userdetail.getPassword());
+		user.setUserId(userdetail.getUserId());
+		user.setPhoneNumber(userdetail.getPhoneNumber());
+		user.setStatus(userdetail.getStatus());
+		
+		
 		userService.addUserToRedis(response, user);
 		
 		String successUrl = determineTargetUrl(authentication);

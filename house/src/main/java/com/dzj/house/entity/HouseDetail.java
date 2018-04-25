@@ -14,6 +14,23 @@ public class HouseDetail {
 	private String subwayStationName;
 	private long houseId;
 
+	
+	public long getSubwayId() {
+		return subwayId;
+	}
+
+	public void setSubwayId(long subwayId) {
+		this.subwayId = subwayId;
+	}
+
+	public String getSubwayName() {
+		return subwayName;
+	}
+
+	public void setSubwayName(String subwayName) {
+		this.subwayName = subwayName;
+	}
+
 	public long getHouseDetailId() {
 		return houseDetailId;
 	}

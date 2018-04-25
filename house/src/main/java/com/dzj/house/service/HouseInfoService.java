@@ -7,6 +7,7 @@ import com.dzj.house.entity.House;
 import com.dzj.house.entity.HouseDetail;
 import com.dzj.house.entity.HousePicture;
 import com.dzj.house.entity.HouseSubscribe;
+import com.dzj.house.entity.User;
 
 public interface HouseInfoService {
 
@@ -14,11 +15,14 @@ public interface HouseInfoService {
 	 * 添加房源信息
 	 * @throws HouseInfoException
 	 */
-	public void addHouseInfo(House house,HouseDetail houseDetail) throws HouseInfoException;
+	public void addHouseInfo(House house,HouseDetail houseDetail,User user) throws HouseInfoException;
 	
 	/**
 	 * 添加房屋图片
 	 * @param housePicture
 	 */
 	public void addHousePicture(List<HousePicture> housePictureList) throws HouseInfoException ;
+	
+	
+	
 }
