@@ -7,11 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.druid.sql.PagerUtils;
 import com.dzj.house.Exception.HouseInfoException;
 import com.dzj.house.dao.HouseDao;
 import com.dzj.house.dao.HouseDetailDao;
+import com.dzj.house.dao.HouseListDtoDao;
 import com.dzj.house.dao.HousePictureDao;
 import com.dzj.house.dao.HouseSubScribleDao;
+import com.dzj.house.dto.HouseListDto;
+import com.dzj.house.dto.HouseResponseDto;
 import com.dzj.house.entity.House;
 import com.dzj.house.entity.HouseDetail;
 import com.dzj.house.entity.HousePicture;
@@ -19,6 +23,7 @@ import com.dzj.house.entity.HouseSubscribe;
 import com.dzj.house.entity.User;
 import com.dzj.house.enums.HouseInfoEnum;
 import com.dzj.house.service.HouseInfoService;
+import com.dzj.house.util.PageCalculator;
 @Service
 public class HouseInfoServiceImpl implements HouseInfoService{
 
@@ -30,6 +35,8 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 	private HousePictureDao housePictureDao;
 	@Autowired
 	private HouseSubScribleDao houseSubScribleDao;
+	@Autowired
+	private HouseListDtoDao houseListDtoDao;
 	
 	@Transactional
 	public void addHouseInfo(House house,HouseDetail houseDetail,User user) throws HouseInfoException {
@@ -61,6 +68,23 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 	public void addHousePicture(List<HousePicture> housePictureList) throws HouseInfoException {
 		
 		
+	}
+
+	
+	public HouseResponseDto getHouseAndPictureList(int pageIndex, int pageSize,long userId) throws HouseInfoException {
+		if( pageIndex <0 ||pageSize<1) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_PAGING_ERROR);
+		}
+		int rowIndex = PageCalculator.calculatorRowindex(pageIndex, pageSize);
+		
+		List<HouseListDto> houseListDto= houseListDtoDao.getHouseListDto(rowIndex, pageSize,userId);
+		if(houseListDto == null || houseListDto.size() <=0) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_SERACH_ERROR);
+		}
+		HouseResponseDto houseResponseDto =new HouseResponseDto();
+		houseResponseDto.setHouseListDtoList(houseListDto);
+		houseResponseDto.setCount(houseListDto.size());
+		return houseResponseDto;
 	}
 
 }

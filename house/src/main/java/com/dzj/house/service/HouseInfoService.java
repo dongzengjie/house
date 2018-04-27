@@ -3,6 +3,7 @@ package com.dzj.house.service;
 import java.util.List;
 
 import com.dzj.house.Exception.HouseInfoException;
+import com.dzj.house.dto.HouseResponseDto;
 import com.dzj.house.entity.House;
 import com.dzj.house.entity.HouseDetail;
 import com.dzj.house.entity.HousePicture;
@@ -23,6 +24,12 @@ public interface HouseInfoService {
 	 */
 	public void addHousePicture(List<HousePicture> housePictureList) throws HouseInfoException ;
 	
-	
+	/**
+	 * 返回房屋，图片信息
+	 * @param rowIndex
+	 * @param pageSize
+	 * @return
+	 */
+	HouseResponseDto getHouseAndPictureList(int pageIndex,int pageSize,long userId) throws HouseInfoException;
 	
 }

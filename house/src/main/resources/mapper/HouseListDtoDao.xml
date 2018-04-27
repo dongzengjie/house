@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dzj.house.dao.HouseListDtoDao">
+
+	<resultMap type="com.dzj.house.dto.HouseListDto" id="houselistmap">
+		<id column="house_id" property="houseId"/>
+		<result column="title" property="title"/>
+		<result column="last_update_time" property="lastUpdateTime"/>
+		<result column="status" property="status"/>
+		
+		<collection property="housePictureList"  ofType="com.dzj.house.entity.HousePicture">
+			<id column="house_picture_id" property="housePictureId"/>
+			<result column="cdn_prefix" property="cdnPrefix"/>
+			<result column="width" property="width"/>
+			<result column="heigh" property="heigh"/>
+			<result column="location" property="location"/>
+			<result column="path" property="path"/>
+		</collection>
+	
+	
+	</resultMap>
+
+	<select id="getHouseListDto" resultMap="houselistmap">
+
+		select
+		h.house_id,
+		h.title,
+		h.last_update_time,
+		h.status,
+		
+		p.house_picture_id,
+		
+		p.cdn_prefix,
+		p.width,
+		p.heigh,
+		p.location,
+		p.path
+		from 
+		house h
+		left join 
+		house_picture p
+		on
+		h.house_id = p.house_id
+		where h.user_id=#{userId}
+		order by last_update_time desc
+		Limit #{rowIndex},#{pageSize}
+
+	</select>
+</mapper>

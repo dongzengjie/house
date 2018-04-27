@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.dzj.house.dto.HouseDto;
+import com.dzj.house.dto.HouseListDto;
 import com.dzj.house.entity.House;
 import com.dzj.house.entity.HouseDetail;
 import com.dzj.house.entity.HousePicture;
@@ -28,9 +29,12 @@ public class HouseInfoTest {
 	private HouseSubScribleDao houseSubScribleDao;
 	@Autowired
 	private HousePictureDao housePictureDao;
-	
+	@Autowired
+	private HouseListDtoDao houseListDtoDao;
 	@Test
 	public void test() {
+		
+		
 		
 		
 		/*House house =new House();

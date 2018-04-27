@@ -50,4 +50,8 @@ public class ToPage {
 		return "admin/house-add";
 		
 	}
+	@RequestMapping(value="/toproducelist",method=RequestMethod.GET)
+	public String toproducelist() {
+		return "admin/house-list";
+	}
 }
