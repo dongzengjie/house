@@ -2,7 +2,7 @@
 $(function(){
 	
 	//分页
-	$('.table-sort').dataTable({
+/*	$('.table-sort').dataTable({
 		
 		
 		
@@ -13,7 +13,7 @@ $(function(){
 		
 		
 	});
-	
+	*/
 	var houseurl='/admin/gethouseinfo/0/100';
 	$.getJSON(houseurl,function(data){
 		if(data.code == 1){
@@ -26,7 +26,7 @@ $(function(){
 				var pictureSize = item.housePictureList.length;			
 				var picturehtml='';
 				if(pictureSize == 0){
-					picturehtml ='<span class="l"> <a class="btn btn-primary radius" onclick="picture_add("添加图片","picture-add.html")" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加图片</a></span>';     
+					picturehtml ='<span class="l"> <a class="btn btn-primary radius" id="picture-add" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加图片</a></span>';     
 				}else{
 					picturehtml ='<a href="javascript:;" onClick="picture_edit("图库编辑","picture-show.html","10001")"><img width="210" class="picture-thumb" src="temp/200x150.jpg"></a>'
 				}
@@ -52,6 +52,11 @@ $(function(){
 			$("#total").html(totalhtml);
 		}
 	});
+	
+	$("body").delegate("#picture-add","click",function(){
+		picture_add("添加图片","/admin/toaddHousePicture");
+	})
+	
 	
 });
 

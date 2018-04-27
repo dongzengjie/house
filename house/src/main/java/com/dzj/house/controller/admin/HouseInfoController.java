@@ -17,9 +17,7 @@ import com.dzj.house.entity.User;
 import com.dzj.house.enums.ResultEnum;
 import com.dzj.house.response.ResponseResult;
 import com.dzj.house.service.HouseInfoService;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 @RestController
 @RequestMapping(value = "/admin")
