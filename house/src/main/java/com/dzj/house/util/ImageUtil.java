@@ -22,15 +22,16 @@ public class ImageUtil {
 		return dateFormat.format(new Date())+""+random.nextInt(8999)+10000;
 	}
 
-	public static void uploadImage(InputStream inputStream, String imageName,Long houseId)  {
-
+	public static String uploadImage(InputStream inputStream, String imageName,Long houseId)  {
+		String location=null;
 		String suffixName = imageName.substring(imageName.lastIndexOf(".")+1, imageName.length());
 		if (suffixName.toLowerCase().equals("bmp") || suffixName.toLowerCase().equals("png")
 				|| suffixName.toLowerCase().equals("jpg") || suffixName.toLowerCase().equals("jpeg")) {
 
 			String newName = getRandomName()+"."+suffixName;
-			
-			String path = PathUtil.getImgBasePath()+PathUtil.getHouseImagePath(houseId);
+			String pathUrl=PathUtil.getHouseImagePath(houseId);
+			location= pathUrl+newName;
+			String path = PathUtil.getImgBasePath()+pathUrl;
 			try {
 				UpLoadFile.upload(inputStream, newName, path);
 			} catch (IOException e) {
@@ -38,6 +39,7 @@ public class ImageUtil {
 			}
 			
 		}
+		return location;
 
 	}
 }

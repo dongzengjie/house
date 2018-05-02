@@ -101,7 +101,8 @@ $(function(){
 			cache : false,
 			success:function(data){
 				if(data.code==1){
-					alert("操作成功");
+					
+					alert("提交成功");
 				}
 			}
 		});
@@ -110,3 +111,6 @@ $(function(){
 		
 		
 });
+
+
+

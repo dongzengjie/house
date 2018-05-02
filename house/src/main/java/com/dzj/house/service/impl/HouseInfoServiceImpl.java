@@ -1,11 +1,14 @@
 package com.dzj.house.service.impl;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.druid.sql.PagerUtils;
 import com.dzj.house.Exception.HouseInfoException;
@@ -22,7 +25,10 @@ import com.dzj.house.entity.HousePicture;
 import com.dzj.house.entity.HouseSubscribe;
 import com.dzj.house.entity.User;
 import com.dzj.house.enums.HouseInfoEnum;
+import com.dzj.house.enums.RedisOverTime;
+import com.dzj.house.redis.RedisService;
 import com.dzj.house.service.HouseInfoService;
+import com.dzj.house.util.ImageUtil;
 import com.dzj.house.util.PageCalculator;
 @Service
 public class HouseInfoServiceImpl implements HouseInfoService{
@@ -37,7 +43,11 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 	private HouseSubScribleDao houseSubScribleDao;
 	@Autowired
 	private HouseListDtoDao houseListDtoDao;
+	@Autowired
+	private RedisService redisService;
 	
+	private static final String HOUSEKEY="HOUSEINFOSERVICE_";
+	 
 	@Transactional
 	public void addHouseInfo(House house,HouseDetail houseDetail,User user) throws HouseInfoException {
 		if(house == null) {
@@ -57,6 +67,8 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		
 		houseDetail.setHouseId(house.getHouseId());
 		
+	
+		redisService.deleteObject(HOUSEKEY+house.getUserId());//新增数据时删除缓存中的数据
 		int houseDetailEffect = houseDetailDao.insertHouseDetail(houseDetail);
 		if(houseDetailEffect <=0) {
 			throw new HouseInfoException(HouseInfoEnum.INSERT_HOUSEDETAIL_INFO_ERROR);
@@ -64,11 +76,7 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		
 	}
 
-	@Override
-	public void addHousePicture(List<HousePicture> housePictureList) throws HouseInfoException {
-		
-		
-	}
+	
 
 	
 	public HouseResponseDto getHouseAndPictureList(int pageIndex, int pageSize,long userId) throws HouseInfoException {
@@ -77,14 +85,78 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		}
 		int rowIndex = PageCalculator.calculatorRowindex(pageIndex, pageSize);
 		
-		List<HouseListDto> houseListDto= houseListDtoDao.getHouseListDto(rowIndex, pageSize,userId);
+		
+		List<HouseListDto> houseListDto =null;
+		if(redisService.hasObject(HOUSEKEY+userId)) {
+			houseListDto =redisService.getObjectValueList(HOUSEKEY+userId, ArrayList.class, HouseListDto.class);
+		}else {
+			houseListDto= houseListDtoDao.getHouseListDto(rowIndex, pageSize,userId);
+			redisService.setObjectValue(HOUSEKEY+userId, houseListDto, RedisOverTime.OneDay.getOverTime());
+		}
 		if(houseListDto == null || houseListDto.size() <=0) {
 			throw new HouseInfoException(HouseInfoEnum.HOUSE_SERACH_ERROR);
 		}
 		HouseResponseDto houseResponseDto =new HouseResponseDto();
 		houseResponseDto.setHouseListDtoList(houseListDto);
 		houseResponseDto.setCount(houseListDto.size());
+		/*List<HouseListDto> houseListDto= houseListDtoDao.getHouseListDto(rowIndex, pageSize,userId);
+		if(houseListDto == null || houseListDto.size() <=0) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_SERACH_ERROR);
+		}
+		HouseResponseDto houseResponseDto =new HouseResponseDto();
+		houseResponseDto.setHouseListDtoList(houseListDto);
+		houseResponseDto.setCount(houseListDto.size());*/
+		
+		
+		
 		return houseResponseDto;
+	}
+
+
+
+
+	@Transactional
+	public void addHousePicture(HousePicture housePicture,MultipartFile file,User user) throws HouseInfoException {
+		if(file ==null) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_ADD_PICTUR_ERROR);
+		}
+		String location=null;
+		long houseId= housePicture.getHouseId();
+		if( houseId<=0) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_ADD_PICTUR_ERROR);
+		}
+		
+		try {
+			location = ImageUtil.uploadImage(file.getInputStream(), file.getOriginalFilename(), houseId);
+		} catch (IOException e) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_ADD_PICTUR_ERROR);
+		}
+		
+		housePicture.setLocation(location);
+		int effect =housePictureDao.addHousePicture(housePicture);
+		if(effect <= 0) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_ADD_PICTUR_ERROR);
+		}
+		redisService.deleteObject(HOUSEKEY+user.getUserId());//新增数据时删除缓存中的数据
+		
+	}
+
+
+
+
+	
+	public List<HousePicture> getPictureListByhouseId(long houseId) {
+	
+		if(houseId <=0) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_INFO_ERROR);
+		}
+		 List<HousePicture> housePictures =housePictureDao.getPictureListByhouseId(houseId);
+		 if(housePictures ==null || housePictures.size()<=0) {
+			 throw new HouseInfoException(HouseInfoEnum.HOUSE_SERACH_ERROR);
+		 }
+		
+		
+		return housePictures;
 	}
 
 }

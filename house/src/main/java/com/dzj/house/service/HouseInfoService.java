@@ -2,6 +2,8 @@ package com.dzj.house.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.dzj.house.Exception.HouseInfoException;
 import com.dzj.house.dto.HouseResponseDto;
 import com.dzj.house.entity.House;
@@ -22,7 +24,7 @@ public interface HouseInfoService {
 	 * 添加房屋图片
 	 * @param housePicture
 	 */
-	public void addHousePicture(List<HousePicture> housePictureList) throws HouseInfoException ;
+	public void addHousePicture(HousePicture housePicture,MultipartFile file,User user) throws HouseInfoException ;
 	
 	/**
 	 * 返回房屋，图片信息
@@ -32,4 +34,6 @@ public interface HouseInfoService {
 	 */
 	HouseResponseDto getHouseAndPictureList(int pageIndex,int pageSize,long userId) throws HouseInfoException;
 	
+	
+	List<HousePicture> getPictureListByhouseId(long houseId);
 }

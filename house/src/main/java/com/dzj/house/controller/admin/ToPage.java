@@ -50,8 +50,21 @@ public class ToPage {
 		return "admin/house-add";
 		
 	}
+	/**
+	 * 房屋列表
+	 * @return
+	 */
 	@RequestMapping(value="/toproducelist",method=RequestMethod.GET)
 	public String toproducelist() {
 		return "admin/house-list";
 	}
+	/**
+	 * 图片列表
+	 * @return
+	 */
+	@RequestMapping(value="/topictureshow",method=RequestMethod.GET)
+	public String topictureshow() {
+		return "admin/picture-show";
+	}
+	
 }

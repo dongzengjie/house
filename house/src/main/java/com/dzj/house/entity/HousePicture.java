@@ -8,6 +8,15 @@ public class HousePicture {
 	private String heigh;
 	private String location;
 	private String path;
+	private int homePicture;
+	
+	
+	public int getHomePicture() {
+		return homePicture;
+	}
+	public void setHomePicture(int homePicture) {
+		this.homePicture = homePicture;
+	}
 	public long getHousePictureId() {
 		return housePictureId;
 	}

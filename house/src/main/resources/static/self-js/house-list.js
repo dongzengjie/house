@@ -1,15 +1,15 @@
 
 $(function(){
 	
-	//分页
-/*	$('.table-sort').dataTable({
+/*	//分页
+	$('.table-sort').dataTable({
 		
 		
 		
 		"bStateSave": true,//状态保存
 		"pading":false,	
 		"scrollX": true,
-		"aLengthMenu" : [ 5, 10, 15 ] 
+		"aLengthMenu" : [ 2, 10, 15 ] 
 		
 		
 	});
@@ -23,25 +23,26 @@ $(function(){
 			
 			var houselisthtml='';
 			houseListDtoList.map(function(item,index){
+				
 				var pictureSize = item.housePictureList.length;			
 				var picturehtml='';
 				if(pictureSize == 0){
-					picturehtml ='<span class="l"> <a class="btn btn-primary radius" id="picture-add" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加图片</a></span>';     
+					picturehtml ='<span class="l"> <a class="btn btn-primary radius" data-id="'+item.houseId+'" id="picture-add" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加图片</a></span>';     
 				}else{
-					picturehtml ='<a href="javascript:;" onClick="picture_edit("图库编辑","picture-show.html","10001")"><img width="210" class="picture-thumb" src="temp/200x150.jpg"></a>'
+					picturehtml ='<a href="javascript:;" data-id="'+item.houseId+'" id="pciture-show" onClick="picture_edit("图库编辑","picture-show.html","10001")"><img width="210" class="picture-thumb" src="'+item.housePictureList[0].location+'"></a>'
 				}
 				
-				houselisthtml +='<tr class="text-c">'
+				houselisthtml +='<tr class="text-c" >'
 							  +'<td><input name="" type="checkbox" value=""></td>'
 							  +'<td>'+index+'</td>'
 							  +'<td>'+item.title+'</td>'
 							  +'<td>'+picturehtml+'</td>'
-							  +'<td >'+item.lastUpdateTime+'</td>'
+							  +'<td >'+datetimeFormat(item.lastUpdateTime)+'</td>'
 							  +'<td class="td-status"><span class="label label-success radius">已发布</span></td>'
-							  +'<td class="td-manage">'
-							  +'<a style="text-decoration:none" onClick="picture_stop(this,"10001")" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>'
-							  +'<a style="text-decoration:none" class="ml-5" onClick="picture_edit("图库编辑","picture-add.html","10001")" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>'
-							  +'<a style="text-decoration:none" class="ml-5" onClick="picture_del(this,"10001")" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>'
+							  +'<td class="td-manage" >'
+							  +'<a style="text-decoration:none" id="house-status" data-id="'+item.houseId+'"  href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>'
+							  +'<a style="text-decoration:none" id="house-edit" data-id="'+item.houseId+'" class="ml-5"  href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>'
+							  +'<a style="text-decoration:none" id="house-delete" data-id="'+item.houseId+'" class="ml-5"  href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>'
 							  +'</td>'
 							  +'</tr>'
 				
@@ -53,31 +54,40 @@ $(function(){
 		}
 	});
 	
-	$("body").delegate("#picture-add","click",function(){
-		picture_add("添加图片","/admin/toaddHousePicture");
+	$("body").delegate("#picture-add","click",function(e){
+		picture_add("添加图片","/admin/toaddHousePicture?houseId="+e.currentTarget.dataset.id+"");
+	});
+	
+	
+	$("body").delegate("#pciture-show","click",function(e){
+		picture_show("查看图片","/admin/topictureshow?houseId="+e.currentTarget.dataset.id+"",e.currentTarget.dataset.id);
+	});
+	
+	
+	
+	$("body").delegate("#house-delete","click",function(e){
+		
+		house_del(e.currentTarget,e.currentTarget.dataset.id);
+		
+	});
+
+	
+	$("body").delegate("#house-status","click",function(e){
+		
+		 house_stop(e.currentTarget,e.currentTarget.dataset.id);
+		
+	});
+	
+	$("body").delegate("#house-edit","click",function(e){
+		
+		//house-edit(e.currentTarget,e.currentTarget.dataset.id);
+		
+		 house_edit("房屋编辑",'/admin/toaddHouse',e.currentTarget.dataset.id)
+		
 	})
 	
 	
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -125,7 +135,7 @@ function picture_shenhe(obj,id){
 }
 
 /*图片-下架*/
-function picture_stop(obj,id){
+function house_stop(obj,id){
 	layer.confirm('确认要下架吗？',function(index){
 	
 		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="picture_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
@@ -153,7 +163,7 @@ function picture_shenqing(obj,id){
 }
 
 /*图片-编辑*/
-function picture_edit(title,url,id){
+function house_edit(title,url,id){
 	var index = layer.open({
 		type: 2,
 		title: title,
@@ -163,7 +173,7 @@ function picture_edit(title,url,id){
 }
 
 /*图片-删除*/
-function picture_del(obj,id){
+function house_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
 			type: 'POST',

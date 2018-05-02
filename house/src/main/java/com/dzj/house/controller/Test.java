@@ -31,7 +31,7 @@ public class Test {
 
 	@PostMapping(value="/upload", consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 	public void test(@RequestParam("file") MultipartFile file,HttpServletRequest request) {
-		String username=request.getParameter("username");
+		String username=request.getParameter("houseId");
 		//String username=(String) request.getAttribute("username");
 		System.out.println(username);
 		System.out.println("成功进入");

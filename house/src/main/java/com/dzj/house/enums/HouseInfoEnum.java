@@ -8,7 +8,8 @@ public enum HouseInfoEnum {
 	INSERT_HOUSEDETAIL_INFO_ERROR(-2005,"详细信息插入错误"),
 	HOUSEDSUBSCRIBE_INFO_ERROR(-2004,"subscribe信息错误"),
 	HOUSE_PAGING_ERROR(-2006,"分页信息错误"),
-	HOUSE_SERACH_ERROR(-2007,"房屋查询出错")
+	HOUSE_SERACH_ERROR(-2007,"房屋查询出错"),
+	HOUSE_ADD_PICTUR_ERROR(-2008,"添加图片失败");
 	;
 	
 	private int code;

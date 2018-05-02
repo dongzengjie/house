@@ -5,6 +5,7 @@
 <mapper namespace="com.dzj.house.dao.HousePictureDao">
 
 
+
 	<insert id="insertHousePicture" parameterType="java.util.List"
 		keyColumn="house_picture_id" keyProperty="housePictureId"
 		useGeneratedKeys="true">
@@ -17,7 +18,8 @@
 		width,
 		heigh,
 		location,
-		path
+		path,
+		home_picture
 		)
 		VALUES
 		<foreach collection="list" item="housePictureList"
@@ -29,8 +31,39 @@
 			#{housePictureList.heigh},
 			#{housePictureList.location},
 			#{housePictureList.path}
+			#{housePictureList.homePicture}
 			)
 		</foreach>
 
 	</insert>
+	
+	
+	<insert id="addHousePicture" keyColumn="house_picture_id" keyProperty="housePictureId"
+		useGeneratedKeys="true" parameterType="com.dzj.house.entity.HousePicture">
+	INSERT INTO house_picture
+
+		(
+		house_id,
+		cdn_prefix,
+		width,
+		heigh,
+		location,
+		path,
+		home_picture
+		)
+		VALUES
+		(
+			#{houseId},
+			#{cdnPrefix},
+			#{width},
+			#{heigh},
+			#{location},
+			#{path},
+			#{homePicture}
+		)
+	</insert>
+	
+	<select id="getPictureListByhouseId" resultType="com.dzj.house.entity.HousePicture">
+		select * from house_picture where house_id=#{houseId}
+	</select>
 </mapper>
