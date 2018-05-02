@@ -5,7 +5,7 @@
 <mapper namespace="com.dzj.house.dao.SupportAddressDao">
 
 	<select id="getCity" resultType="com.dzj.house.entity.SupportAddress">
-		select * from support_address where level = #{level}
+		select * from support_address where level = #{level} order by belong_to asc
 	</select>
 	
 	<select id="getRegion" resultType="com.dzj.house.entity.SupportAddress">

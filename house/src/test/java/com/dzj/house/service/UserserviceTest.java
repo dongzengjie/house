@@ -15,7 +15,9 @@ public class UserserviceTest {
 	
 	@Test
 	public void test() {
-		
+		String aa="dnhkasakshkd";
+		String bb="casawa";
+		System.out.println(aa.charAt(0)==bb.charAt(0));
 	}
 	
 }
