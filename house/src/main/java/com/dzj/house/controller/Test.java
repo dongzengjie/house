@@ -58,6 +58,10 @@ public class Test {
 		return 	userserver.addUserToRedis(response, user);
 		
 	}
+	@GetMapping
+	public void test() {
+		
+	}
 	
 	
 }

@@ -64,7 +64,7 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 	        }  
 	   
 	        if (isUser) {  
-	            return "/user/front/index.html";  
+	            return "/fronthtml/index.html";  
 	        } else if (isAdmin) {  
 	            return "/admin/toCenter";  
 	        } else {  

@@ -3,6 +3,7 @@ package com.dzj.house.controller.front;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,11 +29,6 @@ public class IndexController {
 	public ResponseResult<List<Map<String, List<SupportAddress>>>> getCity(){
 		
 		List<SupportAddress> addressList =supportAddressService.getCity();
-		
-	
-		
-		
-		
 		List<Map<String, List<SupportAddress>>> responseList =new ArrayList<Map<String, List<SupportAddress>>>();
 		
 		for (SupportAddress supportAddress : addressList) {
@@ -49,7 +45,7 @@ public class IndexController {
 			modelMap.put(prefix+"", putaddress);
 			responseList.add(modelMap);
 		}
-		 Set<Map<String, List<SupportAddress>>> h = new HashSet<Map<String, List<SupportAddress>>>(responseList);  
+		LinkedHashSet<Map<String, List<SupportAddress>>> h = new LinkedHashSet<Map<String, List<SupportAddress>>>(responseList);  
 		 responseList.clear();
 		 responseList.addAll(h);
 		

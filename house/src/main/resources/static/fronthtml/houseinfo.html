@@ -23,7 +23,7 @@
         <div class="wrapper ">
             <div class="fl">
                 <a class="logo" href="/" title="寻屋">
-                    <!--<img src="/static/images/logo.png">-->
+                    <!--<img src="/images/logo.png">-->
                 </a>
             </div>
             <div class="fr nav">
@@ -86,7 +86,7 @@
         </div>
         <div class="fr last">
             <div class="ditu fr">
-                <a href="/rent/house/map?cityEnName=sh" target="_blank">
+                <a href="/rent/house/map?cityEnName=" target="_blank">
                     <i></i>
                     地图找房
                 </a>
@@ -100,7 +100,7 @@
     <div class="container">
         <div class="fl l-txt"><i class="icon"></i>&nbsp;<a href="/">寻屋</a><span
                 class="stp">&nbsp;&gt;&nbsp;</span>[<a href="/" title="选择城市">
-            <span>上海</span></a>]租房
+            <span>北京</span></a>]租房
         </div>
         <div class="fr r-txt"></div>
     </div>
@@ -110,7 +110,7 @@
     <div class="filter-box">
         <div class="hd clear">
             <ul class="tab-lst">
-                <li class="on"><a href="/rent/house?cityEnName=sh"><span>全部租房</span></a>
+                <li class="on"><a href="/rent/house?cityEnName="><span>全部租房</span></a>
                 </li>
             </ul>
             <div class="info"><span class="num">真实房源，假一赔亿！</span></div>
@@ -120,17 +120,22 @@
                 <dl class="dl-lst clear">
                     <dt>区域：</dt>
                     <dd data-index="0">
-                        <div class="option-list region-select">
-                            <a data-bind="*"
-                               onclick="changeSimpleCondition('regionEnName', '*')">不限</a>
-                            <tr>
-                                <a href="javascript:void(0);"
-                                   onclick="changeSimpleCondition(&#39;regionEnName&#39;, &#39;ptq&#39;)"
-                                   data-bind="ptq">普陀区</a>
-                            </tr>
+                        <div class="option-list region-select" id="region">
+                           
                         </div>
                     </dd>
                 </dl>
+                
+                 <dl class="dl-lst clear">
+                    <dt>地铁线：</dt>
+                    <dd data-index="0">
+                        <div class="option-list subway-select" id="subway">
+                         
+                           
+                        </div>
+                    </dd>
+                </dl>
+                
                 <dl class="dl-lst clear">
                     <dt>租金：</dt>
                     <dd data-index="1">
@@ -146,7 +151,7 @@
                             <tr>
                                 <a href="javascript:void(0);"
                                    onclick="changeSimpleCondition(&#39;priceBlock&#39;,&#39;1000-3000&#39;)"
-                                   data-bind="1000-3000">1000-3000元</a>
+                                   data-bind="1000-3000" >1000-3000元</a>
                             </tr>
                             <tr>
                                 <a href="javascript:void(0);"
@@ -164,7 +169,6 @@
                                onclick="changeSimpleCondition('areaBlock', '*')">不限
                             </a>
                             <tr>
-                            <td></td>
                                 <a href="javascript:void(0);"
                                    onclick="changeSimpleCondition(&#39;areaBlock&#39;,&#39;*-30&#39;)"
                                    data-bind="*-30">30平以下</a>
@@ -187,16 +191,16 @@
                     <dd data-index="3">
                         <div class="option-list room-select">
                             <!--th:class="${searchBody.layout == 0} ? 'on' : ''"-->
-                            <a data-bind="0" href="javascript:void(0);"
-                               onclick="changeSimpleCondition('layout', 0)">不限</a>
+                            <a data-bind="*" href="javascript:void(0);"
+                               onclick="changeSimpleCondition('room', 0)">不限</a>
                             <a data-bind="1" href="javascript:void(0);"
-                               onclick="changeSimpleCondition('layout', 1)">一室</a>
+                               onclick="changeSimpleCondition('room', 1)">一室</a>
                             <a data-bind="2" href="javascript:void(0);"
-                               onclick="changeSimpleCondition('layout', 2)">二室</a>
+                               onclick="changeSimpleCondition('room', 2)">二室</a>
                             <a data-bind="3" href="javascript:void(0);"
-                               onclick="changeSimpleCondition('layout', 3)">三室</a>
+                               onclick="changeSimpleCondition('room', 3)">三室</a>
                             <a data-bind="4" href="javascript:void(0);"
-                               onclick="changeSimpleCondition('layout', 4)">四室</a>
+                               onclick="changeSimpleCondition('room', 4)">四室</a>
                             <a data-bind="5" href="javascript:void(0);" onclick="changeSimpleCondition('room', 5)">五室及以上
                             </a>
                         </div>
@@ -207,17 +211,17 @@
                     <dd data-index="4">
                         <div class="option-list direction-select">
                             <!--th:class="${searchBody.direction == 0} ? 'on' : ''-->
-                            <a data-bind="0" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 0)">
+                            <a data-bind="*"  href="javascript:void(0);" onclick="changeSimpleCondition('direction', 0)">
                                 不限</a>
-                            <a data-bind="1" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 1)">
+                            <a data-bind=" 朝东" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 1)">
                                 朝东</a>
-                            <a data-bind="2" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 2)">
+                            <a data-bind="朝南" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 2)">
                                 朝南</a>
-                            <a data-bind="3" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 3)">
+                            <a data-bind="朝西" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 3)">
                                 朝西</a>
-                            <a data-bind="4" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 4)">
+                            <a data-bind="朝北" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 4)">
                                 朝北</a>
-                            <a data-bind="5" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 5)">
+                            <a data-bind=" 南北" href="javascript:void(0);" onclick="changeSimpleCondition('direction', 5)">
                                 南北</a>
                         </div>
                     </dd>
@@ -226,7 +230,7 @@
                     <dt>租赁方式：</dt>
                     <dd data-index="5">
                         <div class="option-list rent-way-select">
-                            <a data-bind="-1" href="javascript:void(0);" onclick="changeSimpleCondition('rentWay',
+                            <a data-bind="*" href="javascript:void(0);" onclick="changeSimpleCondition('rentWay',
                             -1)">不限</a>
                             <a data-bind="0" href="javascript:void(0);"
                                onclick="changeSimpleCondition('rentWay', 0)">整租</a>
@@ -275,11 +279,11 @@
         <div id="sem_card"></div>
         <div class="con-box">
             <div class="list-head clear">
-                <h2>共有<span>0</span>套<span>上海</span>在租房源</h2>
+                <h2>共有<span>8</span>套<span>北京</span>在租房源</h2>
                 <div class="view-type" id="viewType">
                     <div class="modeshows modeshow">
                     <span class="l-show view-mod" data-type="real" id="lshow"><i></i>
-                        <span>上海房源</span>
+                        <span>北京房源</span>
                     </span>
                     </div>
                 </div>
@@ -287,15 +291,95 @@
             <div class="list-wrap">
 
                 <ul id="house-lst" class="house-lst">
-                    
+                    <tr>
+                        <li>
+                            <div class="pic-panel">
+                                <a target="_blank" href="/rent/house/show/24">
+                                    <img src="http://7xo6gy.com1.z0.glb.clouddn.com/FvVqU8LneZZ5xaLBAOM1KXR2Pz1X" alt="出门地铁 车公庄北里甲22号楼精装婚房 出租 拎包入住"/>
+                                </a>
+                            </div>
+                            <div class="info-panel">
+                                <div>
+                                    <h2>
+                                        <a target="_blank" href="/rent/house/show/24"
+                                           title="出门地铁 车公庄北里甲22号楼精装婚房 出租 拎包入住">出门地铁 车公庄北里甲22号楼精装婚房 出租 拎包入住</a>
+                                    </h2>
+                                </div>
+                                <div class="col-1">
+                                    <div class="where">
+                                        <a href="/rent/house?cityEnName=&amp;search=%E8%BD%A6%E5%85%AC%E5%BA%84%E5%8C%97%E9%87%8C%E7%94%B2"
+                                           class="laisuzhou">
+                                            <span class="region">车公庄北里甲  </span>
+                                        </a>
+                                        <span class="zone">
+                                            <span>5室3厅  </span>
+                                        </span>
+                                        <span class="meters">288平米  </span>
+                                        <span>朝向</span>
+                                    </div>
+                                    <div class="other">
+                                        <div class="con">
+                                            <span>1楼(共1层)</span>
+                                            <span>/</span>
+                                            <span>2015年建</span>
+                                        </div>
+                                    </div>
+                                    <div class="chanquan">
+                                        <div class="left agency">
+                                            <div class="view-label left">
+                                                <span>
+                                                    <span class="fang-subway"></span>
+                                                    <span class="fang-subway-ex">
+                                                        <span>距离地铁
+                                                            <span>13号线</span>
+                                                            <span>望京西</span>站
+                                                            <span>200</span>米</span>
+                                                    </span>
+                                                </span>
+                                                <span>
+                                                    <span class="decoration"></span>
+                                                    <span class="decoration-ex">
+                                                        <span>光照充足</span>
+                                                    </span>
+                                                </span><span>
+                                                    <span class="decoration"></span>
+                                                    <span class="decoration-ex">
+                                                        <span>精装修</span>
+                                                    </span>
+                                                </span><span>
+                                                    <span class="decoration"></span>
+                                                    <span class="decoration-ex">
+                                                        <span>集体供暖</span>
+                                                    </span>
+                                                </span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="price"><span class="num">50000</span>元/月
+                                    </div>
+                                    <div class="price-pre">
+                                            <span>2017.12.11 更新</span>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="square">
+                                        <div><span class="num">0</span>人</div>
+                                        <div class="col-look">看过此房</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </tr>
+                   
                 </ul>
             </div>
 
-            
-            <div class="page-box house-lst-page-box">
-               	没有找到相关结果>_<，换个姿势去搜索相关数据吧~
+            <div id="pageable" class="page-box house-lst-page-box">
             </div>
-        </div>
+            
     </div>
 </div>
 </div>
@@ -320,11 +404,14 @@
             <div class="copyright fl">Copyright &copy; 2017. 瓦力老师 All rights reserved.</div>
         </div>
     </div>
-    <script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
+   
+</div>
+ <script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="/lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
-</div>
+    <script type="text/javascript" src="/self-js/front/houseinfo.js"></script>
 <script type="text/javascript" src="/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
 <script src="/lib/layui/layui.js" type="text/javascript"></script>
 
 </body>
