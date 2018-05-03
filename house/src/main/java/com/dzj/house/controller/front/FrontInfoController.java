@@ -37,5 +37,6 @@ public class FrontInfoController {
 	@GetMapping(value="/gethouselist")
 	public void getHouseList(RentDto rentDto) {
 		System.out.println(rentDto.getAreaBlock());
+		
 	}
 }

@@ -14,7 +14,7 @@ function locate_url(start, size) {
         target += key + '=' + value + '&';
     });
     target += 'start=' + start + '&size=' + size;
-    alert(target);
+   // alert(target);
     return target;
 }
 
