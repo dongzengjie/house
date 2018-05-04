@@ -14,15 +14,22 @@ public class HouseListDto {
 	private String title;
 	private Date lastUpdateTime;
 	private int status;
-	private	List<HousePicture> housePictureList;
+	//private	List<HousePicture> housePictureList;
+	private String frontPicture;
 	
 	
-	public List<HousePicture> getHousePictureList() {
+	public String getFrontPicture() {
+		return frontPicture;
+	}
+	public void setFrontPicture(String frontPicture) {
+		this.frontPicture = frontPicture;
+	}
+	/*public List<HousePicture> getHousePictureList() {
 		return housePictureList;
 	}
 	public void setHousePictureList(List<HousePicture> housePictureList) {
 		this.housePictureList = housePictureList;
-	}
+	}*/
 	public long getHouseId() {
 		return houseId;
 	}

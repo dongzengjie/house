@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dzj.house.dto.RentDto;
 import com.dzj.house.entity.User;
 import com.dzj.house.service.UserService;
 import com.dzj.house.util.ImageUtil;
@@ -58,9 +59,11 @@ public class Test {
 		return 	userserver.addUserToRedis(response, user);
 		
 	}
-	@GetMapping
-	public void test() {
-		
+	@GetMapping(value="/info")
+	public void test(HttpServletRequest request) {
+		String cityEnName= request.getParameter("cityEnName");
+		System.out.println("sasasa" + cityEnName);
+		//System.out.println(rentDto.getCityEnName());
 	}
 	
 	

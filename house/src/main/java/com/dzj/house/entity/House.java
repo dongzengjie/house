@@ -25,8 +25,15 @@ public class House {
 	private long userId;
 	private int bathroom;
 	private String street;
+	private String frontPicture;
 	
 	
+	public String getFrontPicture() {
+		return frontPicture;
+	}
+	public void setFrontPicture(String frontPicture) {
+		this.frontPicture = frontPicture;
+	}
 	public long getHouseId() {
 		return houseId;
 	}

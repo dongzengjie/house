@@ -3,7 +3,11 @@ package com.dzj.house.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import com.dzj.house.dto.FrontHouseListDto;
+import com.dzj.house.dto.RentDto;
+import com.dzj.house.dto.SearchDto;
 import com.dzj.house.entity.House;
 @Mapper
 public interface HouseDao {
@@ -20,4 +24,8 @@ public interface HouseDao {
 	 * @return
 	 */
 	List<House> queryAllHouseByUserId(long userId);
+	
+	List<FrontHouseListDto>  getFrontHouseList(@Param("searchDto")SearchDto searchDto,@Param("rowIndex") int rowIndex,@Param("pageSize")int pageSize);
+	
+	int updateFrontPicture(@Param("path") String path,@Param("houseId") long houseId, @Param("userId") long userId);
 }

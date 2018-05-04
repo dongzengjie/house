@@ -24,12 +24,12 @@ $(function(){
 			var houselisthtml='';
 			houseListDtoList.map(function(item,index){
 				
-				var pictureSize = item.housePictureList.length;			
+				//var pictureSize = item.housePictureList.length;			
 				var picturehtml='';
-				if(pictureSize == 0){
-					picturehtml ='<span class="l"> <a class="btn btn-primary radius" data-id="'+item.houseId+'" id="picture-add" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加图片</a></span>';     
+				if(item.frontPicture == null){
+					picturehtml ='<span class="l"> <a class="btn btn-primary radius" data-id="'+item.houseId+'" id="picture-add" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 首页图片</a></span>';     
 				}else{
-					picturehtml ='<a href="javascript:;" data-id="'+item.houseId+'" id="pciture-show" onClick="picture_edit("图库编辑","picture-show.html","10001")"><img width="210" class="picture-thumb" src="'+item.housePictureList[0].location+'"></a>'
+					picturehtml ='<a href="javascript:;" data-id="'+item.houseId+'" id="pciture-show" onClick="picture_edit("图库编辑","picture-show.html","10001")"><img width="210" class="picture-thumb" src="'+item.frontPicture+'"></a>'
 				}
 				
 				houselisthtml +='<tr class="text-c" >'
@@ -55,7 +55,7 @@ $(function(){
 	});
 	
 	$("body").delegate("#picture-add","click",function(e){
-		picture_add("添加图片","/admin/toaddHousePicture?houseId="+e.currentTarget.dataset.id+"");
+		picture_add("添加图片","/admin/toaddFrontPicture?houseId="+e.currentTarget.dataset.id+"");
 	});
 	
 	

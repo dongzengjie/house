@@ -36,4 +36,7 @@ public interface HouseInfoService {
 	
 	
 	List<HousePicture> getPictureListByhouseId(long houseId);
+	
+	
+	public void updateFrontPicture(MultipartFile file,long houseId,User user) throws HouseInfoException;
 }

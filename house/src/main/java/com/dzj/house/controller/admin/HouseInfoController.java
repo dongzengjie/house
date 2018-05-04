@@ -74,6 +74,16 @@ public class HouseInfoController {
 		houseInfoService.addHousePicture(housePicture, file,user);
 
 	}
+	
+	
+	@PostMapping(value="/frontpicture", consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+	public void frontpicture(@RequestParam("file") MultipartFile file,HttpServletRequest request,User user) {
+		String houseId=request.getParameter("houseId");
+		System.out.println("进入");
+		houseInfoService.updateFrontPicture(file, Long.parseLong(houseId), user);
+	}
+	
+	
 	@GetMapping(value="/getpicturelist/{houseId}")
 	public ResponseResult<List<HousePicture>> getHousePictureList(@PathVariable long houseId){
 		List<HousePicture> housePictures =houseInfoService.getPictureListByhouseId(houseId);

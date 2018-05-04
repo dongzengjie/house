@@ -8,13 +8,16 @@ function locate_url(start, size) {
     if (typeof(keywords) !== 'undefined' && keywords !== null && keywords.length > 0) {
         data.keywords = keywords;
     }
-
+   
     var target = '/fronthtml/houseinfo.html?cityEnName=' + cityEnName + '&';
     $.each(data, function (key, value) {
         target += key + '=' + value + '&';
+       
     });
+   
+  
     target += 'start=' + start + '&size=' + size;
-   // alert(target);
+  
     return target;
 }
 
@@ -36,26 +39,40 @@ function changeSort(orderBy, direction) {
     window.location.href = locate_url(0, 5);
 }
 
-	var total = 8;
-	var start = 0;
-	var size = 5;
-	if (size < 1) {
-	    size = 5;
-	}
+
 
 $(function () {
-	
+		var infourl='';
+
 	 var priceBlock = getQueryString("priceBlock");
 	 var areaBlock  = getQueryString("areaBlock");
+	 var subwayId =getQueryString("subwayId");
 	 var room = getQueryString("room");
 	 var direction = getQueryString("direction");
 	 var regionEnName = getQueryString("regionEnName");
 	 var rentWay = getQueryString("rentWay");
 	 var orderBy = getQueryString("orderBy");
 	 var orderDirection = getQueryString("orderDirection");
-	
-	var subwayId =getQueryString("subwayId");
+
+	 
+	 var start = getQueryString("start");
+	 var size = getQueryString("size");
+
 	var getiniturl='/front/getregionandsubway/'+cityEnName;
+
+	
+	var infourl='/front/gethouselist?cityEnName='+cityEnName
+	+'&priceBlock='+priceBlock
+	+'&areaBlock='+areaBlock
+	+'&subwayId='+subwayId
+	+'&room='+room
+	+'&direction='+direction
+	+'&regionEnName='+regionEnName
+	+'&rentWay='+rentWay
+	+'&orderBy='+orderBy
+	+'&orderDirection='+orderDirection
+	+'&start='+start
+	+'&size='+size;
 	
 	$.getJSON(getiniturl,function(data){
 		if(data.code==1){
@@ -100,6 +117,20 @@ $(function () {
 		}
 	});
 	
+	var total ;
+	var start ;
+	var size;
+	
+	
+	$.getJSON(infourl,function(data){
+		 total = 50;
+		 start = 0;
+		 size = 5;
+		 if (size < 1) {
+			    size = 5;
+			}
+	});
+	
 	
 	$("body").delegate("#regionselect","click",function(e){
 		
@@ -122,7 +153,7 @@ $(function () {
 		  data.priceBlock = priceBlock;
 	 }
 	 if(subwayId == ""){
-		  data.subwayId = "*";
+		  data.subwayId = "0";
 	 }else{
 		  data.subwayId = subwayId;
 	 }
@@ -134,7 +165,7 @@ $(function () {
 	 }
 	 
 	 if(room == ""){
-		  data.room = "*";
+		  data.room ="0";
 	 }else{
 		  data.room = room;
 	 }
@@ -197,13 +228,33 @@ $(function () {
         return false;
     });
     
-   
-
-  
-  
-
-    
     
 
+    layui.use('laypage', function () {
+        var laypage = layui.laypage;
+
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'pageable', //注意，这里的 test1 是 ID，不用加 # 号
+            count: total, //数据总数，从服务端得到
+            limit: size,
+            curr: start / size + 1,
+            jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+//                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+//                console.log(obj.limit); //得到每页显示的条数
+
+                //首次不执行
+                if (!first) {
+                    window.location.href = locate_url((obj.curr - 1) * obj.limit, obj.limit);
+                }
+            }
+        })
+    });
+
+
+
+    
 });
+
 

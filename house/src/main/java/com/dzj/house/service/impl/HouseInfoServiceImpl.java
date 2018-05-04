@@ -96,6 +96,9 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		if(houseListDto == null || houseListDto.size() <=0) {
 			throw new HouseInfoException(HouseInfoEnum.HOUSE_SERACH_ERROR);
 		}
+		
+	
+		
 		HouseResponseDto houseResponseDto =new HouseResponseDto();
 		houseResponseDto.setHouseListDtoList(houseListDto);
 		houseResponseDto.setCount(houseListDto.size());
@@ -157,6 +160,34 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		
 		
 		return housePictures;
+	}
+
+
+
+
+	
+	public void updateFrontPicture(MultipartFile file, long houseId, User user) throws HouseInfoException{
+		
+		if(file ==null) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_ADD_PICTUR_ERROR);
+		}
+		String path=null;
+	
+		if( houseId<=0) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_ADD_PICTUR_ERROR);
+		}
+		
+		try {
+			path = ImageUtil.uploadImage(file.getInputStream(), file.getOriginalFilename(), houseId);
+		} catch (IOException e) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_ADD_PICTUR_ERROR);
+		}
+		
+		int effect = houseDao.updateFrontPicture(path, houseId, user.getUserId());
+		if(effect <= 0) {
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_ADD_PICTUR_ERROR);
+		}
+		redisService.deleteObject(HOUSEKEY+user.getUserId());//新增数据时删除缓存中的数据
 	}
 
 }

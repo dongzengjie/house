@@ -45,6 +45,16 @@ public class ToPage {
 		
 	}
 	
+	/**
+	 * 新增房屋图片页面
+	 * @return
+	 */
+	@RequestMapping(value="/toaddFrontPicture",method=RequestMethod.GET)
+	public String toaddFrontPicture() {
+		return "admin/front-picture";
+		
+	}
+	
 	@RequestMapping(value="/toaouse",method=RequestMethod.GET)
 	public String ttest() {
 		return "admin/house-add";

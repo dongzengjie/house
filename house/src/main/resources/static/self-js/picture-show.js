@@ -12,7 +12,7 @@ $(function(){
 	
 	
 	$.getJSON(pictureurl,function(data){
-		if(data.code=1){
+		if(data.code==1){
 			housePictureList=data.result;
 			var count =housePictureList.length;
 			$("#count").html(count);

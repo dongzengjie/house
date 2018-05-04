@@ -1,22 +1,26 @@
 package com.dzj.house.dto;
 
-public class RentDto {
-
+public class SearchDto {
 	private String cityEnName;
-	private String priceBlock;
-	private String subwayId;
+	
+	private long subwayId;
 	private String subwayName;
-	private String areaBlock;
-	private String room;
+	
+	private int room;
 	private String direction;
 	private String regionEnName;
 	private String rentWay;
 	private String orderBy;
-	private String start;
-	private String size;
+	private int start;
+	private int size;
+	private int priceMin;
+	private int priceMax;
+	private int areaMin;
+	private int areaMax;
+	
 	private String orderDirection;
 	
-	
+
 	
 	public String getOrderDirection() {
 		return orderDirection;
@@ -24,41 +28,28 @@ public class RentDto {
 	public void setOrderDirection(String orderDirection) {
 		this.orderDirection = orderDirection;
 	}
-	public String getSubwayName() {
-
-		return subwayName;
-	}
-	public void setSubwayName(String subwayName) {
-		this.subwayName = subwayName;
-	}
 	public String getCityEnName() {
 		return cityEnName;
 	}
 	public void setCityEnName(String cityEnName) {
 		this.cityEnName = cityEnName;
 	}
-	public String getPriceBlock() {
-		return priceBlock;
-	}
-	public void setPriceBlock(String priceBlock) {
-		this.priceBlock = priceBlock;
-	}
-	public String getSubwayId() {
+	public long getSubwayId() {
 		return subwayId;
 	}
-	public void setSubwayId(String subwayId) {
+	public void setSubwayId(long subwayId) {
 		this.subwayId = subwayId;
 	}
-	public String getAreaBlock() {
-		return areaBlock;
+	public String getSubwayName() {
+		return subwayName;
 	}
-	public void setAreaBlock(String areaBlock) {
-		this.areaBlock = areaBlock;
+	public void setSubwayName(String subwayName) {
+		this.subwayName = subwayName;
 	}
-	public String getRoom() {
+	public int getRoom() {
 		return room;
 	}
-	public void setRoom(String room) {
+	public void setRoom(int room) {
 		this.room = room;
 	}
 	public String getDirection() {
@@ -85,20 +76,42 @@ public class RentDto {
 	public void setOrderBy(String orderBy) {
 		this.orderBy = orderBy;
 	}
-	public String getStart() {
+	public int getStart() {
 		return start;
 	}
-	public void setStart(String start) {
+	public void setStart(int start) {
 		this.start = start;
 	}
-	public String getSize() {
+	public int getSize() {
 		return size;
 	}
-	public void setSize(String size) {
+	public void setSize(int size) {
 		this.size = size;
 	}
-	
-	
+	public int getPriceMin() {
+		return priceMin;
+	}
+	public void setPriceMin(int priceMin) {
+		this.priceMin = priceMin;
+	}
+	public int getPriceMax() {
+		return priceMax;
+	}
+	public void setPriceMax(int priceMax) {
+		this.priceMax = priceMax;
+	}
+	public int getAreaMin() {
+		return areaMin;
+	}
+	public void setAreaMin(int areaMin) {
+		this.areaMin = areaMin;
+	}
+	public int getAreaMax() {
+		return areaMax;
+	}
+	public void setAreaMax(int areaMax) {
+		this.areaMax = areaMax;
+	}
 	
 	
 }

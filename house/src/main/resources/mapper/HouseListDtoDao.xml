@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dzj.house.dao.HouseListDtoDao">
-
+<!-- 
 	<resultMap type="com.dzj.house.dto.HouseListDto" id="houselistmap">
 		<id column="house_id" property="houseId"/>
 		<result column="title" property="title"/>
@@ -44,6 +44,23 @@
 		on
 		h.house_id = p.house_id
 		where h.user_id=#{userId}
+		order by last_update_time desc
+		Limit #{rowIndex},#{pageSize}
+
+	</select> -->
+	
+	
+	<select id="getHouseListDto" resultType="com.dzj.house.dto.HouseListDto">
+
+		select
+		house_id,
+		title,
+		last_update_time,
+		status,
+		front_picture
+		from
+		house
+		where user_id=#{userId}
 		order by last_update_time desc
 		Limit #{rowIndex},#{pageSize}
 
