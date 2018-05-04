@@ -38,7 +38,6 @@ public class FrontInfoController {
 		
 		dto.setSupportAddresseList(supportAddressService.getRegion(cityEnName));
 		dto.setSubwayList(subWayService.getSubWayByCityName(cityEnName));
-		
 		return new ResponseResult<RegionAndSubwayDto>(dto, ResultEnum.SUCCESS);
 		
 	}
