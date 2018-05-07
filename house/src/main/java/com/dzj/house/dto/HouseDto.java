@@ -23,6 +23,7 @@ public class HouseDto {
 	private String  district;
 	private int bathroom;
 	private String street;
+	private String cityCnName;
 	
 	//housedetail
 	private String description;
@@ -42,6 +43,12 @@ public class HouseDto {
 	
 	
 	
+	public String getCityCnName() {
+		return cityCnName;
+	}
+	public void setCityCnName(String cityCnName) {
+		this.cityCnName = cityCnName;
+	}
 	public String getTitle() {
 		return title;
 	}

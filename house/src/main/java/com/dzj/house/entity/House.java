@@ -26,8 +26,18 @@ public class House {
 	private int bathroom;
 	private String street;
 	private String frontPicture;
+	private String cityCnName;
 	
 	
+	
+	
+	
+	public String getCityCnName() {
+		return cityCnName;
+	}
+	public void setCityCnName(String cityCnName) {
+		this.cityCnName = cityCnName;
+	}
 	public String getFrontPicture() {
 		return frontPicture;
 	}

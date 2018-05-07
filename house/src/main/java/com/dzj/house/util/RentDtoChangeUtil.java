@@ -16,7 +16,7 @@ public class RentDtoChangeUtil {
 		}
 		
 		if(rentDto.getSize().equals("")) {
-			searchDto.setSize(10);
+			searchDto.setSize(5);
 		}else {
 			searchDto.setSize(Integer.parseInt(rentDto.getSize()));
 		}

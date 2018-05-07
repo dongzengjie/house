@@ -14,7 +14,7 @@ $(function(){
 		
 	});
 	*/
-	var houseurl='/admin/gethouseinfo/0/100';
+	var houseurl='/admin/gethouseinfo/0/5';
 	$.getJSON(houseurl,function(data){
 		if(data.code == 1){
 			var houseListDtoList =data.result.houseListDtoList;
@@ -84,7 +84,32 @@ $(function(){
 		
 		 house_edit("房屋编辑",'/admin/toaddHouse',e.currentTarget.dataset.id)
 		
-	})
+	});
+	
+	layui.use('laypage', function () {
+        var laypage = layui.laypage;
+
+        var total =4;
+        var size =3;
+        var start=0;
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'pageable', //注意，这里的 test1 是 ID，不用加 # 号
+            count: total, //数据总数，从服务端得到
+            limit: size,
+            curr: start / size + 1,
+            jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+//                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+//                console.log(obj.limit); //得到每页显示的条数
+
+                //首次不执行
+                if (!first) {
+                    window.location.href = locate_url((obj.curr - 1) * obj.limit, obj.limit);
+                }
+            }
+        })
+    });
 	
 	
 });

@@ -64,6 +64,7 @@ $(function(){
 	$("#submit").click(function(){
 		
 		var houseDto={};
+		houseDto.cityCnName=$("#city-select").find("option:selected").text();
 		houseDto.title=$("#title").val();
 		houseDto.cityEnName=$("#city-select").val();
 		houseDto.redionEnName=$("#region-select").val();

@@ -15,4 +15,6 @@ public interface HouseListDtoDao {
 	 * @return
 	 */
 	List<HouseListDto> getHouseListDto(@Param("rowIndex") int rowIndex,@Param("pageSize") int pageSize,@Param("userId") long userId);
+	
+	int getCount(long userId);
 }

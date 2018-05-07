@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dzj.house.Exception.HouseInfoException;
+import com.dzj.house.Exception.HouseSearchException;
 import com.dzj.house.Exception.LoginException;
 import com.dzj.house.response.ResponseResult;
 
@@ -29,6 +30,10 @@ public class GlobalExceptionHandle {
 			return new ResponseResult<String>(exception.getMessage(), exception.getCode());
 		}else if(e instanceof HouseInfoException) {
 			HouseInfoException exception =(HouseInfoException) e;
+			log.error(exception.getMessage());
+			return new ResponseResult<String>(exception.getMessage(), exception.getCode());
+		}else if(e instanceof HouseSearchException) {
+			HouseSearchException exception =(HouseSearchException) e;
 			log.error(exception.getMessage());
 			return new ResponseResult<String>(exception.getMessage(), exception.getCode());
 		}

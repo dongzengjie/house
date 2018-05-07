@@ -26,6 +26,12 @@ public interface HouseDao {
 	List<House> queryAllHouseByUserId(long userId);
 	
 	List<FrontHouseListDto>  getFrontHouseList(@Param("searchDto")SearchDto searchDto,@Param("rowIndex") int rowIndex,@Param("pageSize")int pageSize);
+	/**
+	 * 返回查询记录数
+	 * @param searchDto
+	 * @return
+	 */
+	int getSearchCount(@Param("searchDto")SearchDto searchDto);
 	
 	int updateFrontPicture(@Param("path") String path,@Param("houseId") long houseId, @Param("userId") long userId);
 }

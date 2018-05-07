@@ -100,7 +100,7 @@
     <div class="container">
         <div class="fl l-txt"><i class="icon"></i>&nbsp;<a href="/">寻屋</a><span
                 class="stp">&nbsp;&gt;&nbsp;</span>[<a href="/" title="选择城市">
-            <span>北京</span></a>]租房
+           <span id="city-name"></span></a>]租房
         </div>
         <div class="fr r-txt"></div>
     </div>
@@ -279,105 +279,21 @@
         <div id="sem_card"></div>
         <div class="con-box">
             <div class="list-head clear">
-                <h2>共有<span>8</span>套<span>北京</span>在租房源</h2>
+                <h2>共有<span id ="totalsize"></span>套<span id="city"></span>在租房源</h2>
                 <div class="view-type" id="viewType">
                     <div class="modeshows modeshow">
                     <span class="l-show view-mod" data-type="real" id="lshow"><i></i>
-                        <span>北京房源</span>
+                        <span id="cityname"></span>
                     </span>
                     </div>
                 </div>
             </div>
             <div class="list-wrap">
-
-                <ul id="house-lst" class="house-lst">
-                    <tr>
-                        <li>
-                            <div class="pic-panel">
-                                <a target="_blank" href="/rent/house/show/24">
-                                    <img src="http://7xo6gy.com1.z0.glb.clouddn.com/FvVqU8LneZZ5xaLBAOM1KXR2Pz1X" alt="出门地铁 车公庄北里甲22号楼精装婚房 出租 拎包入住"/>
-                                </a>
-                            </div>
-                            <div class="info-panel">
-                                <div>
-                                    <h2>
-                                        <a target="_blank" href="/rent/house/show/24"
-                                           title="出门地铁 车公庄北里甲22号楼精装婚房 出租 拎包入住">出门地铁 车公庄北里甲22号楼精装婚房 出租 拎包入住</a>
-                                    </h2>
-                                </div>
-                                <div class="col-1">
-                                    <div class="where">
-                                        <a href="/rent/house?cityEnName=&amp;search=%E8%BD%A6%E5%85%AC%E5%BA%84%E5%8C%97%E9%87%8C%E7%94%B2"
-                                           class="laisuzhou">
-                                            <span class="region">车公庄北里甲  </span>
-                                        </a>
-                                        <span class="zone">
-                                            <span>5室3厅  </span>
-                                        </span>
-                                        <span class="meters">288平米  </span>
-                                        <span>朝向</span>
-                                    </div>
-                                    <div class="other">
-                                        <div class="con">
-                                            <span>1楼(共1层)</span>
-                                            <span>/</span>
-                                            <span>2015年建</span>
-                                        </div>
-                                    </div>
-                                    <div class="chanquan">
-                                        <div class="left agency">
-                                            <div class="view-label left">
-                                                <span>
-                                                    <span class="fang-subway"></span>
-                                                    <span class="fang-subway-ex">
-                                                        <span>距离地铁
-                                                            <span>13号线</span>
-                                                            <span>望京西</span>站
-                                                            <span>200</span>米</span>
-                                                    </span>
-                                                </span>
-                                                <span>
-                                                    <span class="decoration"></span>
-                                                    <span class="decoration-ex">
-                                                        <span>光照充足</span>
-                                                    </span>
-                                                </span><span>
-                                                    <span class="decoration"></span>
-                                                    <span class="decoration-ex">
-                                                        <span>精装修</span>
-                                                    </span>
-                                                </span><span>
-                                                    <span class="decoration"></span>
-                                                    <span class="decoration-ex">
-                                                        <span>集体供暖</span>
-                                                    </span>
-                                                </span>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="price"><span class="num">50000</span>元/月
-                                    </div>
-                                    <div class="price-pre">
-                                            <span>2017.12.11 更新</span>
-                                    </div>
-                                </div>
-                                <div class="col-2">
-                                    <div class="square">
-                                        <div><span class="num">0</span>人</div>
-                                        <div class="col-look">看过此房</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </tr>
-                   
-                </ul>
+       
             </div>
 
             <div id="pageable" class="page-box house-lst-page-box">
+            
             </div>
             
     </div>
@@ -411,7 +327,7 @@
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/self-js/front/houseinfo.js"></script>
 <script type="text/javascript" src="/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-
+<script type="text/javascript" src="/js/dateformat.js"></script>
 <script src="/lib/layui/layui.js" type="text/javascript"></script>
 
 </body>

@@ -32,7 +32,8 @@
 		district,
 		user_id,
 		bathroom,
-		street
+		street,
+		city_cn_name
 		)
 		VALUES
 		(
@@ -56,7 +57,8 @@
 		#{district},
 		#{userId},
 		#{bathroom},
-		#{street}	
+		#{street},
+		#{cityCnName}	
 
 
 		)
@@ -70,6 +72,59 @@
 		
 	</update>
 	
+	<select id="getSearchCount" resultType="java.lang.Integer">
+		select count(1) from
+		 	house left join house_detail
+			on house.house_id = house_detail.house_id
+			<where>
+				<if test="searchDto.cityEnName !=null">
+					and city_en_name=#{searchDto.cityEnName}
+				</if>
+				
+				<if test="searchDto.subwayId != -1">
+					and subway_id=#{searchDto.subwayId}
+				</if>
+				<if test="searchDto.subwayName != null">
+					and subway_name=#{searchDto.subwayName}
+				</if>
+				<if test="searchDto.room != -1">
+					and room=#{searchDto.room}
+				</if>
+				
+				<if test="searchDto.direction !=null">
+					and direction = #{searchDto.direction}
+				</if>
+				
+				<if test="searchDto.regionEnName != null">
+					and region_en_name =#{searchDto.regionEnName}
+				</if>
+				
+				<if test="searchDto.priceMin != -1 and searchDto.priceMax != -1">
+					and price between #{searchDto.priceMin} and #{searchDto.priceMax}
+				</if>
+				<if test="searchDto.priceMin != -1 and searchDto.priceMax == -1">
+					and price between #{searchDto.priceMin} and 100000000
+				</if>
+				
+				<if test="searchDto.priceMin == -1 and searchDto.priceMax != -1">
+					and price between 0 and #{searchDto.priceMax}
+				</if>
+				
+				<if test="searchDto.areaMin != -1 and searchDto.areaMax != -1">
+					and price between #{searchDto.areaMin} and #{searchDto.areaMax}
+				</if>
+				<if test="searchDto.areaMin != -1 and searchDto.areaMax == -1">
+					and price between #{searchDto.areaMin} and  100000
+				</if>
+				
+				<if test="searchDto.areaMin == -1 and searchDto.areaMax != -1">
+					and price between 0 and #{searchDto.areaMax}
+				</if>
+				
+			</where>
+			
+	</select>
+	
 	<select id="getFrontHouseList" resultType="com.dzj.house.dto.FrontHouseListDto">
 		select 
 			house.house_id,
@@ -77,8 +132,12 @@
 			price,
 			room,
 			area,
+			floor,
+			city_cn_name,
 			total_floor,
 			front_picture,
+			district,
+			last_update_time,
 			build_year,
 			parlour,
 			direction,
