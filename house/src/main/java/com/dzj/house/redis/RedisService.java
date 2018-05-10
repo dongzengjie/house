@@ -26,9 +26,11 @@ public class RedisService {
 		ValueOperations<String, String> ops = redisTemplate.opsForValue();
 		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		T value = null;
+		
 		String resultStr = ops.get(key);
 		try {
 			value = objectMapper.readValue(resultStr, clazz);
+			
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -80,6 +82,29 @@ public class RedisService {
 		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		T value = null;
 		String resultStr = ops.get(key);
+		try {
+			value = objectMapper.readValue(resultStr, getCollectionType(collectionClass,elementClasses));
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return value;
+
+	}
+	/**
+	 * 获取分页数据
+	 * @param key
+	 * @param collectionClass
+	 * @param elementClasses
+	 * @return
+	 */
+	public <T> T getObjectValueListByLimit(String key,int start,int size, Class<?> collectionClass, Class<?>... elementClasses  ) {
+		ValueOperations<String, String> ops = redisTemplate.opsForValue();
+		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		T value = null;
+		String resultStr = ops.get(key, start, size);
 		try {
 			value = objectMapper.readValue(resultStr, getCollectionType(collectionClass,elementClasses));
 

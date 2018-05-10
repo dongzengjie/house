@@ -68,8 +68,8 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		houseDetail.setHouseId(house.getHouseId());
 		
 	
-		redisService.deleteObject(HOUSEKEY+house.getUserId());//新增数据时删除缓存中的数据
-		redisService.deleteObject(HOUSEKEY+house.getUserId()+"totalCount");//新增数据时删除缓存中的数据
+		//redisService.deleteObject(HOUSEKEY+house.getUserId());//新增数据时删除缓存中的数据
+		//redisService.deleteObject(HOUSEKEY+house.getUserId()+"totalCount");//新增数据时删除缓存中的数据
 		int houseDetailEffect = houseDetailDao.insertHouseDetail(houseDetail);
 		if(houseDetailEffect <=0) {
 			throw new HouseInfoException(HouseInfoEnum.INSERT_HOUSEDETAIL_INFO_ERROR);
@@ -89,8 +89,9 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		
 		List<HouseListDto> houseListDto =null;
 		int count=0;
-		if(redisService.hasObject(HOUSEKEY+userId)) {
-			houseListDto =redisService.getObjectValueList(HOUSEKEY+userId, ArrayList.class, HouseListDto.class);
+		/*
+		if(redisService.hasObject(HOUSEKEY+userId) && redisService.hasObject(HOUSEKEY+userId+"totalCount")) {
+			houseListDto =redisService.getObjectValueListByLimit(HOUSEKEY+userId, pageIndex, pageSize,ArrayList.class, HouseListDto.class );
 			count = redisService.getObjectValue(HOUSEKEY+userId+"totalCount", Integer.class);
 		}else {
 			houseListDto= houseListDtoDao.getHouseListDto(pageIndex, pageSize,userId);
@@ -98,12 +99,15 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 			redisService.setObjectValue(HOUSEKEY+userId+"totalCount", count, RedisOverTime.OneDay.getOverTime());;
 			redisService.setObjectValue(HOUSEKEY+userId, houseListDto, RedisOverTime.OneDay.getOverTime());
 		}
+		*/
 		
+		houseListDto= houseListDtoDao.getHouseListDto(pageIndex, pageSize,userId);
+		count =houseListDtoDao.getCount(userId);
 		if(houseListDto == null || houseListDto.size() <=0) {
 			throw new HouseInfoException(HouseInfoEnum.HOUSE_SERACH_ERROR);
 		}
 		
-	
+		
 		 
 		HouseResponseDto houseResponseDto =new HouseResponseDto();
 		houseResponseDto.setHouseListDtoList(houseListDto);
@@ -146,8 +150,8 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		if(effect <= 0) {
 			throw new HouseInfoException(HouseInfoEnum.HOUSE_ADD_PICTUR_ERROR);
 		}
-		redisService.deleteObject(HOUSEKEY+user.getUserId());//新增数据时删除缓存中的数据
-		redisService.deleteObject(HOUSEKEY+user.getUserId()+"totalCount");//新增数据时删除缓存中的数据
+		//redisService.deleteObject(HOUSEKEY+user.getUserId());//新增数据时删除缓存中的数据
+		//redisService.deleteObject(HOUSEKEY+user.getUserId()+"totalCount");//新增数据时删除缓存中的数据
 	}
 
 
