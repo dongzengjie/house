@@ -50,6 +50,9 @@ public class RentDtoChangeUtil {
 		if(!rentDto.getRentWay().equals("") &&!rentDto.getRentWay().equals("*")  ) {
 			searchDto.setRentWay(rentDto.getRentWay());
 		}
+		if(rentDto.getKeywords() != null && !rentDto.getKeywords().equals("")) {
+			searchDto.setKeywords(rentDto.getKeywords());
+		}
 		
 		if(!rentDto.getOrderBy().equals("") && !rentDto.getOrderBy().equals("*")) {
 			searchDto.setOrderBy(rentDto.getOrderBy());

@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.dzj.house.dto.FrontHouseListDto;
 import com.dzj.house.dto.RentDto;
 import com.dzj.house.dto.SearchDto;
+import com.dzj.house.elasticSearch.HouseIndexTemple;
 import com.dzj.house.entity.House;
 @Mapper
 public interface HouseDao {
@@ -25,6 +26,8 @@ public interface HouseDao {
 	 */
 	List<House> queryAllHouseByUserId(long userId);
 	
+	House queryHouseByHouseId(long houseId);
+	
 	List<FrontHouseListDto>  getFrontHouseList(@Param("searchDto")SearchDto searchDto,@Param("rowIndex") int rowIndex,@Param("pageSize")int pageSize);
 	/**
 	 * 返回查询记录数
@@ -34,4 +37,18 @@ public interface HouseDao {
 	int getSearchCount(@Param("searchDto")SearchDto searchDto);
 	
 	int updateFrontPicture(@Param("path") String path,@Param("houseId") long houseId, @Param("userId") long userId);
+	/**
+	 * es 索引模板
+	 * @param houseId
+	 * @return
+	 */
+	HouseIndexTemple queryHouseIndexByHouseId(long houseId);
+	
+	/**
+	 * 更新house
+	 * @param house
+	 * @param userId
+	 * @return
+	 */
+	int updateHouse(@Param("house") House house,@Param("userId")long userId);
 }

@@ -6,6 +6,7 @@ public class HouseDto {
 
 
 	//house
+	private int houseId;
 	private String title;
 	private int price;
 	private int area;
@@ -24,6 +25,7 @@ public class HouseDto {
 	private int bathroom;
 	private String street;
 	private String cityCnName;
+	private int status;
 	
 	//housedetail
 	private String description;
@@ -43,6 +45,18 @@ public class HouseDto {
 	
 	
 	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public int getHouseId() {
+		return houseId;
+	}
+	public void setHouseId(int houseId) {
+		this.houseId = houseId;
+	}
 	public String getCityCnName() {
 		return cityCnName;
 	}

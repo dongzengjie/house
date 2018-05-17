@@ -17,11 +17,18 @@ public class SearchDto {
 	private int priceMax;
 	private int areaMin;
 	private int areaMax;
+	private String keywords;
 	
 	private String orderDirection;
 	
-
 	
+	
+	public String getKeywords() {
+		return keywords;
+	}
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
 	public String getOrderDirection() {
 		return orderDirection;
 	}

@@ -17,6 +17,7 @@ import com.dzj.house.entity.House;
 import com.dzj.house.entity.HouseDetail;
 import com.dzj.house.entity.HousePicture;
 import com.dzj.house.entity.HouseSubscribe;
+import com.dzj.house.enums.HouseStatusEnum;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,45 +36,12 @@ public class HouseInfoTest {
 	public void test() {
 		
 		
-		
-		
-		/*House house =new House();
-		house.setTitle("ddddd");
-		house.setTotalFloor(12);
-		houseDao.insertHouse(house);
-		
-		HouseDetail houseDetail =new HouseDetail();
-		houseDetail.setHouseId(house.getHouseId());
-		houseDetail.setAddress("assa");
-		houseDetailDao.insertHouseDetail(houseDetail);
-		
-		HouseSubscribe houseSubscribe =new HouseSubscribe();
-		houseSubscribe.setHouseId(house.getHouseId());
-		houseSubscribe.setCreateTime(new Date());
-		
-		houseSubScribleDao.insertHouseSubScrible(houseSubscribe);
-		
-		HousePicture housePicture =new HousePicture();
-		housePicture.setHouseId(house.getHouseId());
-		housePicture.setPath("sasasa");
-		
-		housePictureDao.insertHousePicture(housePicture);*/
-		
-/*		HousePicture housePicture =new HousePicture();
-		housePicture.setLocation("asas");
-		
-		HousePicture housePicture1 =new HousePicture();
-		housePicture1.setLocation("asas");
-		
-		HousePicture housePicture2 =new HousePicture();
-		housePicture2.setLocation("asas");
-		
-		List<HousePicture> list =new ArrayList<>();
-		list.add(housePicture);
-		list.add(housePicture1);
-		list.add(housePicture2);
-		
-		housePictureDao.insertHousePicture(list);*/
+		House house =new House();
+		house.setArea(55);
+		house.setHouseId(17L);
+		house.setStatus(HouseStatusEnum.UNDER.getCode());
+		int i =houseDao.updateHouse(house, 1l);
+		System.out.println(i);
 		
 	}
 }

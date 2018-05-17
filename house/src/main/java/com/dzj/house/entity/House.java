@@ -5,45 +5,19 @@ import java.util.Date;
 public class House {
 	private long houseId;
 	private String title;
-	private int price;
-	private int area;
-	private int room;
-	private int floor;
-	private int totalFloor;
+	private Integer price;
+	private Integer area;
+	private Integer room;
+	private Integer floor;
+	private Integer totalFloor;
 	private int watchTimes;
 	private String buildYear;
-	private int status;//1.上架 0.下架
+	private int status;//1.上架 0.下架 -1 审核未通过 1 审核通过 -2 待审核
 	private Date createTime;
 	private Date lastUpdateTime;
 	private String cityEnName;
-	private String redionEnName;
+	private String regionEnName;
 	private String cover;
-	private String direction;
-	private String distanceToSubway;
-	private String parlour;
-	private String  district;
-	private long userId;
-	private int bathroom;
-	private String street;
-	private String frontPicture;
-	private String cityCnName;
-	
-	
-	
-	
-	
-	public String getCityCnName() {
-		return cityCnName;
-	}
-	public void setCityCnName(String cityCnName) {
-		this.cityCnName = cityCnName;
-	}
-	public String getFrontPicture() {
-		return frontPicture;
-	}
-	public void setFrontPicture(String frontPicture) {
-		this.frontPicture = frontPicture;
-	}
 	public long getHouseId() {
 		return houseId;
 	}
@@ -56,34 +30,34 @@ public class House {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public int getArea() {
+	public Integer getArea() {
 		return area;
 	}
-	public void setArea(int area) {
+	public void setArea(Integer area) {
 		this.area = area;
 	}
-	public int getRoom() {
+	public Integer getRoom() {
 		return room;
 	}
-	public void setRoom(int room) {
+	public void setRoom(Integer room) {
 		this.room = room;
 	}
-	public int getFloor() {
+	public Integer getFloor() {
 		return floor;
 	}
-	public void setFloor(int floor) {
+	public void setFloor(Integer floor) {
 		this.floor = floor;
 	}
-	public int getTotalFloor() {
+	public Integer getTotalFloor() {
 		return totalFloor;
 	}
-	public void setTotalFloor(int totalFloor) {
+	public void setTotalFloor(Integer totalFloor) {
 		this.totalFloor = totalFloor;
 	}
 	public int getWatchTimes() {
@@ -122,11 +96,11 @@ public class House {
 	public void setCityEnName(String cityEnName) {
 		this.cityEnName = cityEnName;
 	}
-	public String getRedionEnName() {
-		return redionEnName;
+	public String getRegionEnName() {
+		return regionEnName;
 	}
-	public void setRedionEnName(String redionEnName) {
-		this.redionEnName = redionEnName;
+	public void setRegionEnName(String regionEnName) {
+		this.regionEnName = regionEnName;
 	}
 	public String getCover() {
 		return cover;
@@ -158,7 +132,6 @@ public class House {
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-
 	public long getUserId() {
 		return userId;
 	}
@@ -177,9 +150,32 @@ public class House {
 	public void setStreet(String street) {
 		this.street = street;
 	}
+	public String getFrontPicture() {
+		return frontPicture;
+	}
+	public void setFrontPicture(String frontPicture) {
+		this.frontPicture = frontPicture;
+	}
+	public String getCityCnName() {
+		return cityCnName;
+	}
+	public void setCityCnName(String cityCnName) {
+		this.cityCnName = cityCnName;
+	}
+	private String direction;
+	private String distanceToSubway;
+	private String parlour;
+	private String  district;
+	private long userId;
+	private int bathroom;
+	private String street;
+	private String frontPicture;
+	private String cityCnName;
 	
 	
 	
+	
+
 	
 	
 }

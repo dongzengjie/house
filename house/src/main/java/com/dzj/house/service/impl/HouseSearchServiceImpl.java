@@ -11,6 +11,7 @@ import com.dzj.house.dto.FrontHouseListDto;
 import com.dzj.house.dto.HouseSearchDto;
 import com.dzj.house.dto.RentDto;
 import com.dzj.house.dto.SearchDto;
+import com.dzj.house.elasticSearch.SearchService;
 import com.dzj.house.enums.HouseSearchEnum;
 import com.dzj.house.service.HouseSearchService;
 import com.dzj.house.util.PageCalculator;
@@ -21,10 +22,20 @@ public class HouseSearchServiceImpl implements HouseSearchService{
 
 	@Autowired
 	private HouseDao houseDao;
+	@Autowired
+	private SearchService searchService;
 	
 	public HouseSearchDto searchHouseInfo(RentDto rentDto) throws HouseSearchException{
+		
+	
+		
 		SearchDto searchDto =RentDtoChangeUtil.change(rentDto);
 		//int rowIndex= PageCalculator.calculatorRowindex(searchDto.getStart(), searchDto.getSize());
+		
+		if(searchDto.getKeywords() !=null && !searchDto.getKeywords().isEmpty()) {
+			searchService.query(searchDto);
+		}
+		
 		 List<FrontHouseListDto> frontHouseListDto = houseDao.getFrontHouseList(searchDto, searchDto.getStart(), searchDto.getSize());
 		 int total =houseDao.getSearchCount(searchDto);
 		 if(frontHouseListDto==null) {

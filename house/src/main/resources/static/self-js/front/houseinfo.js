@@ -54,7 +54,7 @@ $(function () {
 	 var rentWay = getQueryString("rentWay");
 	 var orderBy = getQueryString("orderBy");
 	 var orderDirection = getQueryString("orderDirection");
-
+	var keywords =  getQueryString("keywords");
 	 
 	 var start = getQueryString("start");
 	 var size = getQueryString("size");
@@ -73,6 +73,7 @@ $(function () {
 	+'&orderBy='+orderBy
 	+'&orderDirection='+orderDirection
 	+'&start='+start
+	+'&keywords='+keywords
 	+'&size='+size;
 	
 	$.getJSON(getiniturl,function(data){
@@ -134,7 +135,7 @@ $(function () {
 		
 	});
 	 
-	 
+	 // data.keywords = keywords;
 	 
 	 if(priceBlock == ""){
 		  data.priceBlock = "*";
@@ -146,6 +147,7 @@ $(function () {
 	 }else{
 		  data.subwayId = subwayId;
 	 }
+	 
 	 
 	 if(areaBlock == ""){
 		  data.areaBlock = "*";

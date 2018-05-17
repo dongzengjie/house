@@ -11,32 +11,70 @@
 		keyProperty="houseDetailId">
 		INSERT INTO house_detail
 		(
-			description,
-			layout_desc,
-			traffic,
-			round_service,
-			rent_way,
-			address,
-			subway_id,
-			subway_name,
-			subway_station_id,
-			subway_station_name,
-			house_id
+		description,
+		layout_desc,
+		traffic,
+		round_service,
+		rent_way,
+		address,
+		subway_id,
+		subway_name,
+		subway_station_id,
+		subway_station_name,
+		house_id
 		)
 		VALUES
 		(
-			#{description},
-			#{layoutDesc},
-			#{traffic},
-			#{roundService},
-			#{rentWay},
-			#{address},
-			#{subwayId},
-			#{subwayName},
-			#{subwayStationId},
-			#{subwayStationName},
-			#{houseId}
-			
+		#{description},
+		#{layoutDesc},
+		#{traffic},
+		#{roundService},
+		#{rentWay},
+		#{address},
+		#{subwayId},
+		#{subwayName},
+		#{subwayStationId},
+		#{subwayStationName},
+		#{houseId}
+
 		)
 	</insert>
+
+	<update id="updateHouseDetail">
+		update house_detail
+		<set>
+			<if test="houseDetail !=null and houseDetail.description !=null">
+				description=#{houseDetail.description},
+			</if>
+			<if test="houseDetail !=null and houseDetail.layoutDesc !=null">
+				layout_desc=#{houseDetail.layoutDesc},
+			</if>
+			<if test="houseDetail !=null and houseDetail.traffic !=null">
+				traffic=#{houseDetail.traffic},
+			</if>
+			<if test="houseDetail !=null and houseDetail.roundService !=null">
+				round_service=#{houseDetail.roundService},
+			</if>
+			<if test="houseDetail !=null and houseDetail.rentWay !=null ">
+				rent_way=#{houseDetail.rentWay},
+			</if>
+			<if test="houseDetail !=null and houseDetail.address !=null">
+				address=#{houseDetail.address},
+			</if>
+			<if test="houseDetail !=null and houseDetail.subwayStationId !=null">
+				subway_station_id=#{houseDetail.subwayStationId},
+			</if>
+			<if test="houseDetail !=null and houseDetail.subwayStationName !=null">
+				subway_station_name=#{houseDetail.subwayStationName},
+			</if>
+			<if test="houseDetail !=null and houseDetail.subwayId !=null">
+				subway_id=#{houseDetail.subwayId},
+			</if>
+			<if test="houseDetail !=null and houseDetail.subwayName !=null">
+				subway_name=#{houseDetail.subwayName}
+			</if>
+
+		</set>
+		where house_id=#{houseDetail.houseId}
+	</update>
 </mapper>

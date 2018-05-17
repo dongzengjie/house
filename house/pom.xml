@@ -26,9 +26,23 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
+	<!-- 	<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+		</dependency> -->
+		
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch.client/transport -->
+		<dependency>
+		    <groupId>org.elasticsearch.client</groupId>
+		    <artifactId>transport</artifactId>
+		    <version>6.2.3</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+		<dependency>
+		    <groupId>io.netty</groupId>
+		    <artifactId>netty-all</artifactId>
+		    <version>4.1.24.Final</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.github.jmnarloch/modelmapper-spring-boot-starter -->
@@ -89,6 +103,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
 	</dependencies>
 

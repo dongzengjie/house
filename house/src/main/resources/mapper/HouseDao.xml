@@ -4,8 +4,46 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dzj.house.dao.HouseDao">
 
-	<select id="queryAllHouseByUserId" resultType="com.dzj.house.entity.House">
+	<select id="queryAllHouseByUserId"
+		resultType="com.dzj.house.entity.House">
 		select * from house where user_id=#{userId}
+	</select>
+	<select id="queryHouseByHouseId"
+		resultType="com.dzj.house.entity.House">
+
+		select * from house where house_id=#{houseId}
+	</select>
+
+	<select id="queryHouseIndexByHouseId"
+		resultType="com.dzj.house.elasticSearch.HouseIndexTemple">
+		select
+		h.house_id,
+		h.title,
+		h.price,
+		h.area,
+		h.create_time,
+		h.last_update_time,
+		h.city_en_name,
+		h.front_picture,
+		h.region_en_name,
+		h.direction,
+		h.distance_to_subway,
+		h.street,
+		h.district,
+		hd.traffic,
+		hd.layout_desc,
+		hd.round_service,
+		hd.description,
+		hd.rent_way,
+		hd.subway_name,
+		hd.subway_station_name
+		from house h
+		left join house_detail hd
+		on h.house_id=hd.house_id
+		where h.house_id=#{houseId}
+
+
+
 	</select>
 
 	<insert id="insertHouse"
@@ -58,147 +96,225 @@
 		#{userId},
 		#{bathroom},
 		#{street},
-		#{cityCnName}	
+		#{cityCnName}
 
 
 		)
 
 	</insert>
-	
-	
+
+
 	<update id="updateFrontPicture">
-		
-		update house set front_picture =#{path} where house_id=#{houseId} and user_id=#{userId}
-		
+
+		update house set front_picture =#{path} where house_id=#{houseId} and
+		user_id=#{userId}
+
 	</update>
-	
+
 	<select id="getSearchCount" resultType="java.lang.Integer">
 		select count(1) from
-		 	house left join house_detail
-			on house.house_id = house_detail.house_id
-			<where>
-				<if test="searchDto.cityEnName !=null">
-					and city_en_name=#{searchDto.cityEnName}
-				</if>
-				
-				<if test="searchDto.subwayId != -1">
-					and subway_id=#{searchDto.subwayId}
-				</if>
-				<if test="searchDto.subwayName != null">
-					and subway_name=#{searchDto.subwayName}
-				</if>
-				<if test="searchDto.room != -1">
-					and room=#{searchDto.room}
-				</if>
-				
-				<if test="searchDto.direction !=null">
-					and direction = #{searchDto.direction}
-				</if>
-				
-				<if test="searchDto.regionEnName != null">
-					and region_en_name =#{searchDto.regionEnName}
-				</if>
-				
-				<if test="searchDto.priceMin != -1 and searchDto.priceMax != -1">
-					and price between #{searchDto.priceMin} and #{searchDto.priceMax}
-				</if>
-				<if test="searchDto.priceMin != -1 and searchDto.priceMax == -1">
-					and price between #{searchDto.priceMin} and 100000000
-				</if>
-				
-				<if test="searchDto.priceMin == -1 and searchDto.priceMax != -1">
-					and price between 0 and #{searchDto.priceMax}
-				</if>
-				
-				<if test="searchDto.areaMin != -1 and searchDto.areaMax != -1">
-					and price between #{searchDto.areaMin} and #{searchDto.areaMax}
-				</if>
-				<if test="searchDto.areaMin != -1 and searchDto.areaMax == -1">
-					and price between #{searchDto.areaMin} and  100000
-				</if>
-				
-				<if test="searchDto.areaMin == -1 and searchDto.areaMax != -1">
-					and price between 0 and #{searchDto.areaMax}
-				</if>
-				
-			</where>
-			
+		house left join house_detail
+		on house.house_id = house_detail.house_id
+		<where>
+			<if test="searchDto.cityEnName !=null">
+				and city_en_name=#{searchDto.cityEnName}
+			</if>
+
+			<if test="searchDto.subwayId != -1">
+				and subway_id=#{searchDto.subwayId}
+			</if>
+			<if test="searchDto.subwayName != null">
+				and subway_name=#{searchDto.subwayName}
+			</if>
+			<if test="searchDto.room != -1">
+				and room=#{searchDto.room}
+			</if>
+
+			<if test="searchDto.direction !=null">
+				and direction = #{searchDto.direction}
+			</if>
+
+			<if test="searchDto.regionEnName != null">
+				and region_en_name =#{searchDto.regionEnName}
+			</if>
+
+			<if test="searchDto.priceMin != -1 and searchDto.priceMax != -1">
+				and price between #{searchDto.priceMin} and #{searchDto.priceMax}
+			</if>
+			<if test="searchDto.priceMin != -1 and searchDto.priceMax == -1">
+				and price between #{searchDto.priceMin} and 100000000
+			</if>
+
+			<if test="searchDto.priceMin == -1 and searchDto.priceMax != -1">
+				and price between 0 and #{searchDto.priceMax}
+			</if>
+
+			<if test="searchDto.areaMin != -1 and searchDto.areaMax != -1">
+				and price between #{searchDto.areaMin} and #{searchDto.areaMax}
+			</if>
+			<if test="searchDto.areaMin != -1 and searchDto.areaMax == -1">
+				and price between #{searchDto.areaMin} and 100000
+			</if>
+
+			<if test="searchDto.areaMin == -1 and searchDto.areaMax != -1">
+				and price between 0 and #{searchDto.areaMax}
+			</if>
+			and status = 1
+		</where>
+
 	</select>
-	
-	<select id="getFrontHouseList" resultType="com.dzj.house.dto.FrontHouseListDto">
-		select 
-			house.house_id,
-			title,
-			price,
-			room,
-			area,
-			floor,
-			city_cn_name,
-			total_floor,
-			front_picture,
-			district,
-			last_update_time,
-			build_year,
-			parlour,
-			direction,
-			distance_to_subway,
-			subway_name,
-			subway_station_name
-			from 
-			house left join house_detail
-			on house.house_id = house_detail.house_id
-			<where>
-				<if test="searchDto.cityEnName !=null">
-					and city_en_name=#{searchDto.cityEnName}
-				</if>
-				
-				<if test="searchDto.subwayId != -1">
-					and subway_id=#{searchDto.subwayId}
-				</if>
-				<if test="searchDto.subwayName != null">
-					and subway_name=#{searchDto.subwayName}
-				</if>
-				<if test="searchDto.room != -1">
-					and room=#{searchDto.room}
-				</if>
-				
-				<if test="searchDto.direction !=null">
-					and direction = #{searchDto.direction}
-				</if>
-				
-				<if test="searchDto.regionEnName != null">
-					and region_en_name =#{searchDto.regionEnName}
-				</if>
-				
-				<if test="searchDto.priceMin != -1 and searchDto.priceMax != -1">
-					and price between #{searchDto.priceMin} and #{searchDto.priceMax}
-				</if>
-				<if test="searchDto.priceMin != -1 and searchDto.priceMax == -1">
-					and price between #{searchDto.priceMin} and 100000000
-				</if>
-				
-				<if test="searchDto.priceMin == -1 and searchDto.priceMax != -1">
-					and price between 0 and #{searchDto.priceMax}
-				</if>
-				
-				<if test="searchDto.areaMin != -1 and searchDto.areaMax != -1">
-					and price between #{searchDto.areaMin} and #{searchDto.areaMax}
-				</if>
-				<if test="searchDto.areaMin != -1 and searchDto.areaMax == -1">
-					and price between #{searchDto.areaMin} and  100000
-				</if>
-				
-				<if test="searchDto.areaMin == -1 and searchDto.areaMax != -1">
-					and price between 0 and #{searchDto.areaMax}
-				</if>
-				
-			</where>
-			
-			order by ${searchDto.orderBy} ${searchDto.orderDirection}
-			limit #{rowIndex},#{pageSize}
-			
+
+	<select id="getFrontHouseList"
+		resultType="com.dzj.house.dto.FrontHouseListDto">
+		select
+		house.house_id,
+		title,
+		price,
+		room,
+		area,
+		floor,
+		city_cn_name,
+		total_floor,
+		front_picture,
+		district,
+		last_update_time,
+		build_year,
+		parlour,
+		direction,
+		distance_to_subway,
+		subway_name,
+		subway_station_name
+		from
+		house left join house_detail
+		on house.house_id = house_detail.house_id
+		<where>
+			<if test="searchDto.cityEnName !=null">
+				and city_en_name=#{searchDto.cityEnName}
+			</if>
+
+			<if test="searchDto.subwayId != -1">
+				and subway_id=#{searchDto.subwayId}
+			</if>
+			<if test="searchDto.subwayName != null">
+				and subway_name=#{searchDto.subwayName}
+			</if>
+			<if test="searchDto.room != -1">
+				and room=#{searchDto.room}
+			</if>
+
+			<if test="searchDto.direction !=null">
+				and direction = #{searchDto.direction}
+			</if>
+
+			<if test="searchDto.regionEnName != null">
+				and region_en_name =#{searchDto.regionEnName}
+			</if>
+
+			<if test="searchDto.priceMin != -1 and searchDto.priceMax != -1">
+				and price between #{searchDto.priceMin} and #{searchDto.priceMax}
+			</if>
+			<if test="searchDto.priceMin != -1 and searchDto.priceMax == -1">
+				and price between #{searchDto.priceMin} and 100000000
+			</if>
+
+			<if test="searchDto.priceMin == -1 and searchDto.priceMax != -1">
+				and price between 0 and #{searchDto.priceMax}
+			</if>
+
+			<if test="searchDto.areaMin != -1 and searchDto.areaMax != -1">
+				and price between #{searchDto.areaMin} and #{searchDto.areaMax}
+			</if>
+			<if test="searchDto.areaMin != -1 and searchDto.areaMax == -1">
+				and price between #{searchDto.areaMin} and 100000
+			</if>
+
+			<if test="searchDto.areaMin == -1 and searchDto.areaMax != -1">
+				and price between 0 and #{searchDto.areaMax}
+			</if>
+
+			and status = 1
+		</where>
+
+		order by ${searchDto.orderBy} ${searchDto.orderDirection}
+		limit #{rowIndex},#{pageSize}
+
 	</select>
-	
-	
-	
+
+	<update id="updateHouse">
+		update house
+		<set>
+			<if test="house !=null and house.title !=null">
+				title=#{house.title},
+			</if>
+			<if test="house !=null and house.price !=null ">
+				price =#{house.price},
+			</if>
+			<if test="house !=null and house.area !=null">
+				area=#{house.area},
+			</if>
+			<if test="house != null and house.room !=null">
+				room=#{ house.room},
+			</if>
+			<if test="house != null and house.floor !=null">
+				floor=#{house.floor},
+			</if>
+			<if test="house != null and house.totalFloor !=null">
+				total_floor=#{house.totalFloor},
+			</if>
+			<if test="house != null and house.buildYear !=null">
+				build_year=#{house.buildYear},
+			</if>
+			<if test="house != null and house.lastUpdateTime !=null">
+				last_update_time=#{house.lastUpdateTime}
+			</if>
+			<if test="house != null and house.cover !=null">
+				cover=#{house.cover},
+			</if>
+			<if test="house != null and house.cityEnName !=null">
+				city_en_name=#{house.cityEnName},
+			</if>
+			<if test="house != null and house.regionEnName !=null">
+				region_en_name=#{house.regionEnName},
+			</if>
+			<if test="house != null and house.direction !=null">
+				direction=#{house.direction},
+			</if>
+			<if test="house != null and house.distanceToSubway !=null">
+				distance_to_subway=#{house.distanceToSubway},
+			</if>
+			<if test="house != null and house.parlour !=null">
+				parlour=#{house.parlour},
+			</if>
+			<if test="house != null and house.district !=null">
+				district=#{house.district},
+			</if>
+			<if test="house != null and house.bathroom !=null">
+				bathroom=#{house.bathroom},
+			</if>
+			<if test="house != null and house.street !=null">
+				street=#{house.street},
+			</if>
+			<if test="house != null and house.frontPicture !=null">
+				front_picture=#{house.frontPicture},
+			</if>
+			<if test="house != null and house.cityCnName !=null">
+				city_cn_name=#{house.cityCnName},
+			</if>
+			<if test="house != null">
+				status=#{house.status}
+			</if>
+			
+		</set>
+		where 
+		house_id = #{house.houseId} and user_id =#{userId}
+	</update>
+
+
+
+
+
+
+
+
+
 </mapper>

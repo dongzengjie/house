@@ -16,8 +16,14 @@ public class RentDto {
 	private String size;
 	private String orderDirection;
 	
-	
-	
+	private String keywords;
+
+	public String getKeywords() {
+		return keywords;
+	}
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
 	public String getOrderDirection() {
 		return orderDirection;
 	}

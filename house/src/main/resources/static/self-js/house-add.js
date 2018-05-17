@@ -91,8 +91,7 @@ $(function(){
 		houseDto.description=$("#description").val();
 		
 		
-		var formData = new FormData();
-		formData.append('houseinfo',JSON.stringify(houseDto));
+		
 		$.ajax({
 			
 			url:addhouseinfourl,

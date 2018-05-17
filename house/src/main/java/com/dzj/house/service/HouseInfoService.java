@@ -39,4 +39,11 @@ public interface HouseInfoService {
 	
 	
 	public void updateFrontPicture(MultipartFile file,long houseId,User user) throws HouseInfoException;
+	
+	/**
+	 * 更新房屋状态
+	 * @param userId
+	 * @param status
+	 */
+	public void updateHouseStatus(long userId,House house);
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +21,15 @@ import com.dzj.house.dao.HousePictureDao;
 import com.dzj.house.dao.HouseSubScribleDao;
 import com.dzj.house.dto.HouseListDto;
 import com.dzj.house.dto.HouseResponseDto;
+import com.dzj.house.elasticSearch.SearchService;
 import com.dzj.house.entity.House;
 import com.dzj.house.entity.HouseDetail;
 import com.dzj.house.entity.HousePicture;
 import com.dzj.house.entity.HouseSubscribe;
 import com.dzj.house.entity.User;
 import com.dzj.house.enums.HouseInfoEnum;
+import com.dzj.house.enums.HouseSearchEnum;
+import com.dzj.house.enums.HouseStatusEnum;
 import com.dzj.house.enums.RedisOverTime;
 import com.dzj.house.redis.RedisService;
 import com.dzj.house.service.HouseInfoService;
@@ -45,8 +50,12 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 	private HouseListDtoDao houseListDtoDao;
 	@Autowired
 	private RedisService redisService;
+	@Autowired
+	private SearchService searchService;//elasticSearch
 	
 	private static final String HOUSEKEY="HOUSEINFOSERVICE_";
+	
+	private static final Logger logger =LoggerFactory.getLogger(HouseInfoService.class);
 	 
 	@Transactional
 	public void addHouseInfo(House house,HouseDetail houseDetail,User user) throws HouseInfoException {
@@ -60,6 +69,7 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		house.setUserId(user.getUserId());
 		house.setCreateTime(new Date());
 		house.setLastUpdateTime(new Date());
+		house.setStatus(0);//待审核
 		int effect =houseDao.insertHouse(house);
 		if(effect <= 0) {
 			throw new HouseInfoException(HouseInfoEnum.INSERT_HOUSE_ERROR);
@@ -74,6 +84,7 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		if(houseDetailEffect <=0) {
 			throw new HouseInfoException(HouseInfoEnum.INSERT_HOUSEDETAIL_INFO_ERROR);
 		}
+	//	searchService.index(house.getHouseId());
 		
 	}
 
@@ -197,7 +208,36 @@ public class HouseInfoServiceImpl implements HouseInfoService{
 		if(effect <= 0) {
 			throw new HouseInfoException(HouseInfoEnum.HOUSE_ADD_PICTUR_ERROR);
 		}
-		redisService.deleteObject(HOUSEKEY+user.getUserId());//新增数据时删除缓存中的数据
+		//redisService.deleteObject(HOUSEKEY+user.getUserId());//新增数据时删除缓存中的数据
+	}
+
+
+
+
+	@Transactional
+	public void updateHouseStatus(long userId, House house) {
+		if(userId<=0) {
+			logger.error("用户为空");
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_UPDATE_ERROR);
+		}
+		if(house == null || house.getHouseId() <0) {
+			logger.error("房源信息为空");
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_UPDATE_ERROR);
+		}
+		if(house.getStatus() == HouseStatusEnum.PASS.getCode()) {
+			searchService.index(house.getHouseId());
+		}else {
+			searchService.remove(house.getHouseId());
+		}
+		int effect = houseDao.updateHouse(house, userId);
+		if(effect<=0) {
+			logger.error("房更新失败");
+			throw new HouseInfoException(HouseInfoEnum.HOUSE_UPDATE_ERROR);
+		}
+		
+		
+		
+		
 	}
 
 }

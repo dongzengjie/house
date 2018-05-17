@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dzj.house.dao.HouseDao;
 import com.dzj.house.dto.HouseDto;
 import com.dzj.house.dto.HouseResponseDto;
 import com.dzj.house.entity.House;
@@ -91,5 +92,24 @@ public class HouseInfoController {
 		
 		return new ResponseResult<List<HousePicture>>(housePictures, ResultEnum.SUCCESS);
 		
+	}
+	/**
+	 * 更新房源信息
+	 * @param user
+	 * @param houseDto
+	 */
+	@PostMapping(value="/updatehouse")
+	public void updateHouseInfo(User user,@RequestBody HouseDto houseDto) {
+	
+	}
+	/**
+	 * 更新状态
+	 * @param user
+	 * @param houseDto
+	 */
+	@PostMapping(value="/updatehousestatus")
+	public ResponseResult updateHouseStatus(User user,@RequestBody House house) {
+		houseInfoService.updateHouseStatus(user.getUserId(), house);
+		return new ResponseResult<>(ResultEnum.SUCCESS);
 	}
 }
