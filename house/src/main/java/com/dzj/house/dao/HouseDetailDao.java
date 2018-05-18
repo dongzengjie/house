@@ -16,4 +16,10 @@ public interface HouseDetailDao {
 	 * @return
 	 */
 	int updateHouseDetail(@Param("houseDetail")HouseDetail houseDetail);
+	/**
+	 * 根据id查询房屋详细信息
+	 * @param houseId
+	 * @return
+	 */
+	HouseDetail queryHouseDetailByHouseId(long houseId);
 }

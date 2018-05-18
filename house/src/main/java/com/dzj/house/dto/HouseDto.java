@@ -26,6 +26,7 @@ public class HouseDto {
 	private String street;
 	private String cityCnName;
 	private int status;
+	private String frontPicture;
 	
 	//housedetail
 	private String description;
@@ -34,17 +35,22 @@ public class HouseDto {
 	private String roundService;
 	private String rentWay;
 	private String address;
-	
 	private long subwayStationId;
 	private String subwayStationName;
 	
-	//subway
+	//subway   
 	private long subwayId;
 	private String subwayName;
 	
 	
 	
 	
+	public String getFrontPicture() {
+		return frontPicture;
+	}
+	public void setFrontPicture(String frontPicture) {
+		this.frontPicture = frontPicture;
+	}
 	public int getStatus() {
 		return status;
 	}

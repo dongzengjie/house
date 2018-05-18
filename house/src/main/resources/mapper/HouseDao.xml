@@ -38,7 +38,8 @@
 		hd.subway_name,
 		hd.subway_station_name
 		from house h
-		left join house_detail hd
+		left join
+		house_detail hd
 		on h.house_id=hd.house_id
 		where h.house_id=#{houseId}
 
@@ -106,7 +107,8 @@
 
 	<update id="updateFrontPicture">
 
-		update house set front_picture =#{path} where house_id=#{houseId} and
+		update house set front_picture =#{path} where
+		house_id=#{houseId} and
 		user_id=#{userId}
 
 	</update>
@@ -114,7 +116,8 @@
 	<select id="getSearchCount" resultType="java.lang.Integer">
 		select count(1) from
 		house left join house_detail
-		on house.house_id = house_detail.house_id
+		on house.house_id =
+		house_detail.house_id
 		<where>
 			<if test="searchDto.cityEnName !=null">
 				and city_en_name=#{searchDto.cityEnName}
@@ -139,7 +142,8 @@
 			</if>
 
 			<if test="searchDto.priceMin != -1 and searchDto.priceMax != -1">
-				and price between #{searchDto.priceMin} and #{searchDto.priceMax}
+				and price between #{searchDto.priceMin} and
+				#{searchDto.priceMax}
 			</if>
 			<if test="searchDto.priceMin != -1 and searchDto.priceMax == -1">
 				and price between #{searchDto.priceMin} and 100000000
@@ -150,7 +154,8 @@
 			</if>
 
 			<if test="searchDto.areaMin != -1 and searchDto.areaMax != -1">
-				and price between #{searchDto.areaMin} and #{searchDto.areaMax}
+				and price between #{searchDto.areaMin} and
+				#{searchDto.areaMax}
 			</if>
 			<if test="searchDto.areaMin != -1 and searchDto.areaMax == -1">
 				and price between #{searchDto.areaMin} and 100000
@@ -186,7 +191,8 @@
 		subway_station_name
 		from
 		house left join house_detail
-		on house.house_id = house_detail.house_id
+		on house.house_id =
+		house_detail.house_id
 		<where>
 			<if test="searchDto.cityEnName !=null">
 				and city_en_name=#{searchDto.cityEnName}
@@ -211,7 +217,8 @@
 			</if>
 
 			<if test="searchDto.priceMin != -1 and searchDto.priceMax != -1">
-				and price between #{searchDto.priceMin} and #{searchDto.priceMax}
+				and price between #{searchDto.priceMin} and
+				#{searchDto.priceMax}
 			</if>
 			<if test="searchDto.priceMin != -1 and searchDto.priceMax == -1">
 				and price between #{searchDto.priceMin} and 100000000
@@ -222,7 +229,8 @@
 			</if>
 
 			<if test="searchDto.areaMin != -1 and searchDto.areaMax != -1">
-				and price between #{searchDto.areaMin} and #{searchDto.areaMax}
+				and price between #{searchDto.areaMin} and
+				#{searchDto.areaMax}
 			</if>
 			<if test="searchDto.areaMin != -1 and searchDto.areaMax == -1">
 				and price between #{searchDto.areaMin} and 100000
@@ -236,8 +244,42 @@
 		</where>
 
 		order by ${searchDto.orderBy} ${searchDto.orderDirection}
-		limit #{rowIndex},#{pageSize}
+		limit
+		#{rowIndex},#{pageSize}
 
+	</select>
+
+	<select id="getFrontHouseListByHouseIds"
+		parameterType="java.util.List" resultType="com.dzj.house.dto.FrontHouseListDto">
+		select
+		house.house_id,
+		title,
+		price,
+		room,
+		area,
+		floor,
+		city_cn_name,
+		total_floor,
+		front_picture,
+		district,
+		last_update_time,
+		build_year,
+		parlour,
+		direction,
+		distance_to_subway,
+		subway_name,
+		subway_station_name
+		from
+		house left join
+		house_detail
+		on house.house_id = house_detail.house_id
+		where
+			house.house_id in
+			(
+				<foreach collection="list" item="houseIds" separator="," index="index">
+					#{houseIds}
+				</foreach>
+			)
 	</select>
 
 	<update id="updateHouse">
@@ -303,9 +345,9 @@
 			<if test="house != null">
 				status=#{house.status}
 			</if>
-			
+
 		</set>
-		where 
+		where
 		house_id = #{house.houseId} and user_id =#{userId}
 	</update>
 

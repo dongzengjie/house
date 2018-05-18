@@ -15,5 +15,11 @@ public interface SearchService {
 	public void remove(long houseId);
 	
 	
-	List<Long> query(SearchDto searchDto);
+	EsResponse query(SearchDto searchDto);
+	/**
+	 * 补全信息
+	 * @param prefix
+	 * @return
+	 */
+	List<String> suggest(String prefix);
 }

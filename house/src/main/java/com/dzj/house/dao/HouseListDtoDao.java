@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.dzj.house.dto.HouseDto;
 import com.dzj.house.dto.HouseListDto;
 
 @Mapper
@@ -17,4 +18,10 @@ public interface HouseListDtoDao {
 	List<HouseListDto> getHouseListDto(@Param("rowIndex") int rowIndex,@Param("pageSize") int pageSize,@Param("userId") long userId);
 	
 	int getCount(long userId);
+	/**
+	 * 根据id查询house信息
+	 * @param houseId
+	 * @return
+	 */
+	
 }

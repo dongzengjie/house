@@ -54,8 +54,8 @@ $(function () {
 	 var rentWay = getQueryString("rentWay");
 	 var orderBy = getQueryString("orderBy");
 	 var orderDirection = getQueryString("orderDirection");
-	var keywords =  getQueryString("keywords");
-	 
+	 var keywords =  getQueryString("keywords");
+	// var keywords = $('#keyword-box').val();
 	 var start = getQueryString("start");
 	 var size = getQueryString("size");
 
@@ -136,6 +136,8 @@ $(function () {
 	});
 	 
 	 // data.keywords = keywords;
+	
+	 $('#keyword-box').val(keywords);
 	 
 	 if(priceBlock == ""){
 		  data.priceBlock = "*";
@@ -319,6 +321,27 @@ $(function () {
 	});
 	
 	
+
+    $('#keyword-box').autocomplete({
+        minLength: 2, // 最小字符数，默认1
+        delay: 300, // 延迟加载300ms
+        source: function (request, response) { // 数据源
+            $.ajax({
+                url: '/front/house/autocomplete?prefix=' + request.term,
+                success: function (res) {
+                    if (res.code == 1) {
+                        response(res.result);
+                    }
+                }
+            });
+        },
+        select: function (event, ui) { // 选中事件
+            $('#keyword-box').val(ui.item.value);
+            //data.keywords = ui.item.value;
+            window.location.href = locate_url(start, size);
+        }
+    });
+
 	 
 
 

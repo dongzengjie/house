@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dzj.house.Exception.HouseInfoException;
+import com.dzj.house.dto.HouseDto;
 import com.dzj.house.dto.HouseResponseDto;
 import com.dzj.house.entity.House;
 import com.dzj.house.entity.HouseDetail;
@@ -46,4 +47,6 @@ public interface HouseInfoService {
 	 * @param status
 	 */
 	public void updateHouseStatus(long userId,House house);
+	
+	HouseDto queryHouseDtoByHouseId(long houseId);
 }

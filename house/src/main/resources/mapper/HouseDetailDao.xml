@@ -77,4 +77,8 @@
 		</set>
 		where house_id=#{houseDetail.houseId}
 	</update>
+	
+	<select id="queryHouseDetailByHouseId" resultType="com.dzj.house.entity.HouseDetail">
+		select * from house_detail where house_id=#{houseId}
+	</select>
 </mapper>

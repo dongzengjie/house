@@ -14,7 +14,7 @@ public class HouseIndex {
 	public static final String DIRECTION="direction";
 	public static final String DISTANCE_TO_SUBWAY="distance_to_subway";
 	public static final String STREET="street";
-	public static final String DISTRACT="district";
+	public static final String DISTRICT="district";
 	public static final String DESCRITION="description";
 	public static final String TRAFFIC="traffic";
 	public static final String LAYOUT_DESC="layoutDesc";

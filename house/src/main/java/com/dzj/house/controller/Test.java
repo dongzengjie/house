@@ -77,7 +77,7 @@ public class Test {
 	}
 	@GetMapping(value="/info")
 	public void test(HttpServletRequest request) {
-		//searchService.index(12L);
+	/*	//searchService.index(12L);
 		//searchService.remove(12l);
 		SearchDto dto =new SearchDto();
 		dto.setCityEnName("sh");
@@ -85,11 +85,11 @@ public class Test {
 		dto.setOrderDirection("desc");
 		dto.setRegionEnName("PudongNewArea");
 		dto.setStart(0);
-		dto.setSize(10);
+		dto.setSize(2);
 		List<Long> as = searchService.query(dto);
 		for (Long long1 : as) {
 			System.out.println(long1);
-		}
+		}*/
 	}
 	@GetMapping(value="/house")
 	public void testhouse() {

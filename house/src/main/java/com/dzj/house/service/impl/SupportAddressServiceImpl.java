@@ -20,7 +20,6 @@ public class SupportAddressServiceImpl implements SupportAddressService{
 		return supportAddressDao.getCity(CityLevel.CITY.getLevel());
 	}
 
-
 	public List<SupportAddress> getRegion(String belongTo) {
 		
 		return supportAddressDao.getRegion(CityLevel.REGION.getLevel(), belongTo);

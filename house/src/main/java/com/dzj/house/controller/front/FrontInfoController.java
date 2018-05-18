@@ -2,10 +2,14 @@ package com.dzj.house.controller.front;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dzj.house.dao.HouseDao;
@@ -49,7 +53,16 @@ public class FrontInfoController {
 	public ResponseResult<HouseSearchDto> getHouseList(RentDto rentDto) {
 		HouseSearchDto  houseSearchDto = houseSearchService.searchHouseInfo(rentDto);
 		return new ResponseResult<HouseSearchDto>(houseSearchDto, ResultEnum.SUCCESS);
-		
-	
+	}
+	@GetMapping(value="/house/autocomplete")
+	public ResponseResult<List<String>> autocomplete(@RequestParam(value="prefix")String prefix) {
+		if(prefix.isEmpty()) {
+			return new ResponseResult<List<String>>(ResultEnum.ERROR);
+		}
+		System.out.println(prefix);
+		List<String> result= new ArrayList<>();
+		result.add("大润发");
+		result.add("董asdas");
+		return new ResponseResult<List<String>>(result, ResultEnum.SUCCESS);
 	}
 }

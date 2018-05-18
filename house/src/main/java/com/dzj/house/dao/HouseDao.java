@@ -51,4 +51,11 @@ public interface HouseDao {
 	 * @return
 	 */
 	int updateHouse(@Param("house") House house,@Param("userId")long userId);
+	
+	/**
+	 * 根据houseId集合查询
+	 * @param houseIds
+	 * @return
+	 */
+	List<FrontHouseListDto>  getFrontHouseListByHouseIds(List<Long> houseIds);
 }

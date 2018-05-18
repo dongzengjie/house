@@ -18,6 +18,18 @@ public class House {
 	private String cityEnName;
 	private String regionEnName;
 	private String cover;
+	private String direction;
+	private String distanceToSubway;
+	private String parlour;
+	private String  district;
+	private long userId;
+	private int bathroom;
+	private String street;
+	private String frontPicture;
+	private String cityCnName;
+	
+	
+	
 	public long getHouseId() {
 		return houseId;
 	}
@@ -162,16 +174,7 @@ public class House {
 	public void setCityCnName(String cityCnName) {
 		this.cityCnName = cityCnName;
 	}
-	private String direction;
-	private String distanceToSubway;
-	private String parlour;
-	private String  district;
-	private long userId;
-	private int bathroom;
-	private String street;
-	private String frontPicture;
-	private String cityCnName;
-	
+
 	
 	
 	
