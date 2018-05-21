@@ -48,5 +48,5 @@ public interface HouseInfoService {
 	 */
 	public void updateHouseStatus(long userId,House house);
 	
-	HouseDto queryHouseDtoByHouseId(long houseId);
+	HouseDto queryHouseDtoByHouseId(long houseId,User user);
 }

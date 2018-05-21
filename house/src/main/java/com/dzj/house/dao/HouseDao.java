@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.dzj.house.dto.FrontHouseListDto;
+import com.dzj.house.dto.HouseDto;
 import com.dzj.house.dto.RentDto;
 import com.dzj.house.dto.SearchDto;
 import com.dzj.house.elasticSearch.HouseIndexTemple;
@@ -26,7 +27,7 @@ public interface HouseDao {
 	 */
 	List<House> queryAllHouseByUserId(long userId);
 	
-	House queryHouseByHouseId(long houseId);
+	House queryHouseByHouseId(@Param("houseId")long houseId,@Param("userId") long userId);
 	
 	List<FrontHouseListDto>  getFrontHouseList(@Param("searchDto")SearchDto searchDto,@Param("rowIndex") int rowIndex,@Param("pageSize")int pageSize);
 	/**
@@ -58,4 +59,6 @@ public interface HouseDao {
 	 * @return
 	 */
 	List<FrontHouseListDto>  getFrontHouseListByHouseIds(List<Long> houseIds);
+	
+	HouseDto queryHouseDtoById(@Param("houseId")long houseId,@Param("userId") long userId);
 }

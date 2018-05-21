@@ -31,6 +31,7 @@ $(function(){
 			
 		});
 		
+		
 		$.getJSON(getsubwayurl+belongto,function(data){
 			var subwayselectHTML='';
 			data.result.map(function(item,index){
@@ -67,7 +68,7 @@ $(function(){
 		houseDto.cityCnName=$("#city-select").find("option:selected").text();
 		houseDto.title=$("#title").val();
 		houseDto.cityEnName=$("#city-select").val();
-		houseDto.redionEnName=$("#region-select").val();
+		houseDto.regionEnName=$("#region-select").val();
 		houseDto.street=$("#street").val();
 		houseDto.district=$("#district").val();
 		houseDto.address=$("#address").val();

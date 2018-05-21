@@ -55,7 +55,7 @@ $(function(){
 		
 		//house-edit(e.currentTarget,e.currentTarget.dataset.id);
 		
-		 house_edit("房屋编辑",'/admin/toaddHouse',e.currentTarget.dataset.id)
+		 house_edit("房屋编辑",'/admin/toeditHouse?houseId='+e.currentTarget.dataset.id,e.currentTarget.dataset.id)
 		
 	});
 	

@@ -221,22 +221,19 @@ public class HouseInfoServiceImpl implements HouseInfoService {
 
 	}
 
-	public HouseDto queryHouseDtoByHouseId(long houseId) {
+	public HouseDto queryHouseDtoByHouseId(long houseId,User user) {
+		if(user==null || user.getUserId()<=0) {
+			throw new HouseInfoException(HouseInfoEnum.USER_IS_NULL);
+		}
 		if (houseId <= 0) {
 			throw new HouseInfoException(HouseInfoEnum.HOUSE_ID_NULL);
 		}
-		House house = houseDao.queryHouseByHouseId(houseId);
-		if (house == null) {
+		HouseDto houseDto =houseDao.queryHouseDtoById(houseId, user.getUserId());
+		if (houseDto == null) {
 			throw new HouseInfoException(HouseInfoEnum.HOUSE_INFO_ERROR);
 		}
-		HouseDetail houseDetail = houseDetailDao.queryHouseDetailByHouseId(houseId);
-		if (houseDetail == null) {
-			throw new HouseInfoException(HouseInfoEnum.HOUSE_INFO_ERROR);
-		}
-		HouseDto houseDto = new HouseDto();
-
-		houseDto = modelMapper.map(house, HouseDto.class);
-		houseDto = modelMapper.map(houseDetail, HouseDto.class);
+	
+		
 		return houseDto;
 	}
 

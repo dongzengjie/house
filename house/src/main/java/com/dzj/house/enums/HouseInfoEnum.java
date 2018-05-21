@@ -11,7 +11,8 @@ public enum HouseInfoEnum {
 	HOUSE_SERACH_ERROR(-2007,"房屋查询出错"),
 	HOUSE_ADD_PICTUR_ERROR(-2008,"添加图片失败"),
 	HOUSE_UPDATE_ERROR(-1311,"更新失败"),
-	HOUSE_ID_NULL(-1312,"房屋ID为空")
+	HOUSE_ID_NULL(-1312,"房屋ID为空"),
+	USER_IS_NULL(-1111,"用户为空")
 	;
 	
 	private int code;

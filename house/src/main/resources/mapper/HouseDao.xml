@@ -11,7 +11,7 @@
 	<select id="queryHouseByHouseId"
 		resultType="com.dzj.house.entity.House">
 
-		select * from house where house_id=#{houseId}
+		select * from house where house_id=#{houseId} and user_id=#{userId}
 	</select>
 
 	<select id="queryHouseIndexByHouseId"
@@ -45,6 +45,11 @@
 
 
 
+	</select>
+	
+	<select id="queryHouseDtoById" resultType="com.dzj.house.dto.HouseDto">
+		select 
+		h.*,hd.* from house h left join house_detail hd on h.house_id = hd.house_id where h.house_id = #{houseId} and h.user_id=#{userId}
 	</select>
 
 	<insert id="insertHouse"

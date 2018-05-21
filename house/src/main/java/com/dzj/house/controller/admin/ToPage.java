@@ -36,6 +36,16 @@ public class ToPage {
 	}
 	
 	/**
+	 * 房屋编辑
+	 * @return
+	 */
+	@RequestMapping(value="/toeditHouse",method=RequestMethod.GET)
+	public String toAdminEditHouse() {
+		return "admin/house-edit";
+		
+	}
+	
+	/**
 	 * 新增房屋图片页面
 	 * @return
 	 */

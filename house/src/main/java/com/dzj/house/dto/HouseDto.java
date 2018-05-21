@@ -16,7 +16,7 @@ public class HouseDto {
 	private int watchTimes;
 	private String buildYear;
 	private String cityEnName;
-	private String redionEnName;
+	private String regionEnName;
 	private String cover;
 	private String direction;
 	private String distanceToSubway;
@@ -123,11 +123,12 @@ public class HouseDto {
 	public void setCityEnName(String cityEnName) {
 		this.cityEnName = cityEnName;
 	}
-	public String getRedionEnName() {
-		return redionEnName;
+
+	public String getRegionEnName() {
+		return regionEnName;
 	}
-	public void setRedionEnName(String redionEnName) {
-		this.redionEnName = redionEnName;
+	public void setRegionEnName(String regionEnName) {
+		this.regionEnName = regionEnName;
 	}
 	public String getCover() {
 		return cover;

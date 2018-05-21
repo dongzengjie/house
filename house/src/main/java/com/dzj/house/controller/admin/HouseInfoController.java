@@ -53,6 +53,13 @@ public class HouseInfoController {
 		return new ResponseResult(ResultEnum.SUCCESS);
 
 	}
+	@GetMapping(value="/gethousedto/{houseId}")
+	public ResponseResult<HouseDto> getHouseDtoByHouseId(User user ,@PathVariable("houseId")long houseId){
+		HouseDto houseDto = houseInfoService.queryHouseDtoByHouseId(houseId, user);
+
+		return new ResponseResult<HouseDto>(houseDto, ResultEnum.SUCCESS);
+		
+	}
 
 	@GetMapping(value = "/gethouseinfo/{pageIndex}/{pageSize}")
 	public ResponseResult<HouseResponseDto> getHouseInfo(@PathVariable("pageIndex") int pageIndex,
@@ -112,4 +119,6 @@ public class HouseInfoController {
 		houseInfoService.updateHouseStatus(user.getUserId(), house);
 		return new ResponseResult<>(ResultEnum.SUCCESS);
 	}
+	
+	
 }

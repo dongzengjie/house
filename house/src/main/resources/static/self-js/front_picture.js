@@ -18,6 +18,7 @@ $(function(){
 
 			$list = $("#fileList"), $btn = $("#btn-star"), state = "pending",
 					uploader;
+			
 
 			var uploader = WebUploader.create({
 				auto : true,
