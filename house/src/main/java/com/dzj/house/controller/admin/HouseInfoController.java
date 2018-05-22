@@ -38,7 +38,7 @@ public class HouseInfoController {
 	private HouseInfoService houseInfoService;
 	
 	
-
+	//添加
 	@PostMapping(value = "/addHouseInfo")
 	public ResponseResult addHouseInfo(User user, @RequestBody HouseDto houseDto) {
 
